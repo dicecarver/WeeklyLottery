@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="selectedBackgroundColor">#E0E0E0</color> <!-- 연한 색상 -->
+    <color name="unselectedBackgroundColor">#F0F0F0</color>
+    <color name="selectedTextColor">#000000</color> <!-- 선택된 텍스트 색상 -->
+    <color name="unselectedTextColor">#888888</color> <!-- 비선택된 텍스트 색상 -->
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#B266FF</color>
+    <color name="gray_light">#C0C0C0</color>
+    <color name="gold">#FFD700</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="bronze">#CD7F32</color>
+    <color name="gray">#B0BEC5</color>
+    <color name="black">#000000</color>
+    <color name="colorPrimary">#FF6200EE</color> <!-- 원형 배경색을 설정 -->
+    <color name="colorAccent">#FF03DAC5</color>
+    <color name="omrRed">#FC6060</color>
+    <color name="omrPen_first_start">#80202020</color>
+    <color name="omrPen_first_end">#80202020</color>
+    <color name="omrPen_second_start">#FF202020</color>
+    <color name="omrPen_second_end">#FF202020</color>
+    <color name="omrPen_first_red">#80FF7E79</color>
+    <color name="omrPen_second_red">#FF941100</color>
+    <color name="omrPen_first_green">#8077AA00</color>
+    <color name="omrPen_second_green">#FF008F00</color>
+    <color name="omrPen_first_gold">#80E7D39F</color>
+    <color name="omrPen_second_gold">#FFD9BC77</color>
+    <color name="ball_stroke_1_10">#FFD700</color>
+    <color name="ball_stroke_11_20">#0066FC</color>
+    <color name="ball_stroke_21_30">#FC5588</color>
+    <color name="ball_stroke_31_40">#777777</color>
+    <color name="ball_stroke_41_45">#77AA00</color>
+    <color name="ball_white">#FFFFFF</color>
+    <color name="lottery_paper">#FAF8EF</color>
+
+    <!--<color name="omrPen_first_start">#80202020</color>
+    <color name="omrPen_first_end">#80202020</color>
+    <color name="omrPen_second_start">#FF202020</color>
+    <color name="omrPen_second_end">#FF202020</color>-->
+</resources>

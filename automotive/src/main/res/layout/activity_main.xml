@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:padding="16dp"
+    android:weightSum="3">
+
+    <!-- 첫 번째 버튼 -->
+    <LinearLayout
+        android:id="@+id/lottoPlaceButton"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:contentDescription="로또명당 아이콘"
+            android:src="@drawable/ic_lotto_place" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:text="로또명당"
+            android:textSize="40sp" />
+    </LinearLayout>
+
+    <!-- 두 번째 버튼 -->
+    <LinearLayout
+        android:id="@+id/historyButton"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:contentDescription="당첨히스토리 아이콘"
+            android:src="@drawable/ic_history" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="당첨히스토리"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:paddingTop="10dp" />
+    </LinearLayout>
+
+    <!-- 세 번째 버튼 -->
+    <LinearLayout
+        android:id="@+id/gameButton"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:contentDescription="가상추첨게임 아이콘"
+            android:src="@drawable/ic_virtual_draw" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가상추첨게임"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:paddingTop="10dp" />
+    </LinearLayout>
+
+</LinearLayout>

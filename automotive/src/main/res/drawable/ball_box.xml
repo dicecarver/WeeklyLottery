@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <solid android:color="#00000000" /> <!-- 투명 배경 -->
+            <stroke android:width="35dp" android:color="@color/black" /> <!-- 가장 바깥쪽 두꺼운 테두리 -->
+            <corners android:radius="100dp" />
+        </shape>
+    </item>
+
+    <!-- 중간 테두리 -->
+    <item>
+        <shape>
+            <solid android:color="#00000000" /> <!-- 투명 배경 -->
+            <stroke android:width="10dp" android:color="@color/ball_white" /> <!-- 중간 테두리 -->
+            <corners android:radius="98dp" /> <!-- 약간 작은 반지름 설정 -->
+        </shape>
+    </item>
+
+    <!-- 안쪽 테두리 -->
+    <item>
+        <shape>
+            <solid android:color="#00000000" /> <!-- 투명 배경 -->
+            <stroke android:width="5dp" android:color="@color/black" /> <!-- 안쪽 테두리 -->
+            <corners android:radius="96dp" /> <!-- 더 작은 반지름 설정 -->
+        </shape>
+    </item>
+
+</layer-list>

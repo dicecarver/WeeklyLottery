@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <!-- 회차 -->
+    <TextView
+        android:id="@+id/roundText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="회차"
+        android:textSize="16sp" />
+
+    <!-- 로또 당첨 번호 -->
+    <TextView
+        android:id="@+id/numbersText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="로또 당첨번호"
+        android:textSize="16sp" />
+
+    <!-- 보너스 -->
+    <TextView
+        android:id="@+id/bonusText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="보너스"
+        android:textSize="16sp" />
+
+    <!-- 당첨자 수 -->
+    <TextView
+        android:id="@+id/winnerCountText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="당첨자수"
+        android:textSize="16sp" />
+
+    <!-- 1인당 당첨금액 -->
+    <TextView
+        android:id="@+id/prizeAmountText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="1인당 당첨금액"
+        android:textSize="16sp" />
+</LinearLayout>

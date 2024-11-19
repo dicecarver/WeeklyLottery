@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="OMRNumStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/omrRed</item>
+    </style>
+    <style name="OMRMarkFirstStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/omrRed</item>
+        <item name="android:background">@color/omrPen_first_start</item>
+    </style>
+    <style name="OMRMarkFirstStyleRed">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/omrRed</item>
+        <item name="android:background">@color/omrPen_first_red</item>
+    </style>
+    <style name="OMRMarkFirstStyleGold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/omrRed</item>
+        <item name="android:background">@color/omrPen_first_gold</item>
+    </style>
+    <style name="OMRMarkFirstStyleGreen">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/ball_white</item>
+        <item name="android:background">@color/omrPen_first_green</item>
+    </style>
+    <style name="OMRMarkSecondStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/omrRed</item>
+        <item name="android:background">@color/omrPen_second_start</item>
+    </style>
+    <style name="OMRMarkSecondStyleRed">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/omrRed</item>
+        <item name="android:background">@color/omrPen_second_red</item>
+    </style>
+    <style name="OMRMarkSecondStyleGold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/omrRed</item>
+        <item name="android:background">@color/omrPen_second_gold</item>
+    </style>
+    <style name="OMRMarkSecondStyleGreen">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/ball_white</item>
+        <item name="android:background">@color/omrPen_second_green</item>
+    </style>
+    <style name="OMRFrameStyle">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/circle_omr</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/omrRed</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+    <style name="OLDStyle">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/circle_omr</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/omrRed</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+    <style name="CasinoOuntlineStyle">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+</resources>
