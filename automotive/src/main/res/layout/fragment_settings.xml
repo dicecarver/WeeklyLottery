@@ -5,7 +5,7 @@
     android:padding="16dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_gravity="center"
@@ -26,7 +26,7 @@
         <!-- SeekBar 1번부터 45번까지 -->
 
         <RelativeLayout
-            android:layout_width="1400dp"
+            android:layout_width="2000dp"
             android:layout_height="500dp"
             android:columnCount="45"
             android:rowCount="3"
@@ -35,32 +35,23 @@
             <!-- 첫 번째 행 (컬럼들) -->
             <TextView
                 android:id="@+id/valueText1"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
+                style="@style/setting_text_value"
                 android:translationX="0dp" />
             <TextView
                 android:id="@+id/valueText2"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="30dp" />
+                style="@style/setting_text_value"
+                android:translationX="40dp" />
             <TextView
                 android:id="@+id/valueText3"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="60dp" />
+                style="@style/setting_text_value"
+                android:translationX="80dp" />
             <TextView
                 android:id="@+id/valueText4"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="90dp" />
+                style="@style/setting_text_value"
+                android:translationX="120dp" />
             <TextView
                 android:id="@+id/valueText5"
                 android:layout_width="30dp"
@@ -356,7 +347,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:rotation="270"
-                android:translationX="-180dp"
+                android:translationX="-185dp"
                 android:translationY="205dp"/>
             <SeekBar
                 android:id="@+id/seekBar2"
@@ -364,8 +355,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:rotation="270"
-                android:translationX="-100dp"
-                android:translationY="135dp"/>
+                android:translationX="-155dp"
+                android:translationY="205dp"/>
             <SeekBar
                 android:id="@+id/seekBar3"
                 android:layout_width="400dp"
