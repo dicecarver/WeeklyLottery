@@ -50,155 +50,114 @@
                 android:translationX="80dp" />
             <TextView
                 android:id="@+id/valueText4"
+                android:text="100"
                 style="@style/setting_text_value"
                 android:translationX="120dp" />
             <TextView
                 android:id="@+id/valueText5"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="120dp" />
+                style="@style/setting_text_value"
+                android:translationX="160dp" />
             <TextView
                 android:id="@+id/valueText6"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="150dp" />
+                style="@style/setting_text_value"
+                android:translationX="200dp" />
             <TextView
                 android:id="@+id/valueText7"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="180dp" />
-            <TextView
-                android:id="@+id/valueText8"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="210dp" />
-            <TextView
-                android:id="@+id/valueText9"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
+                style="@style/setting_text_value"
                 android:translationX="240dp" />
             <TextView
+                android:id="@+id/valueText8"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="280dp" />
+            <TextView
+                android:id="@+id/valueText9"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="320dp" />
+            <TextView
                 android:id="@+id/valueText10"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="270dp" />
-            <TextView
-                android:id="@+id/valueText11"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="300dp" />
-            <TextView
-                android:id="@+id/valueText12"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="330dp" />
-            <TextView
-                android:id="@+id/valueText13"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
+                style="@style/setting_text_value"
                 android:translationX="360dp" />
             <TextView
-                android:id="@+id/valueText14"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText11"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="390dp" />
+                style="@style/setting_text_value"
+                android:translationX="400dp" />
             <TextView
-                android:id="@+id/valueText15"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText12"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="420dp" />
+                style="@style/setting_text_value"
+                android:translationX="440dp" />
             <TextView
-                android:id="@+id/valueText16"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText13"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="450dp" />
-            <TextView
-                android:id="@+id/valueText17"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
+                style="@style/setting_text_value"
                 android:translationX="480dp" />
             <TextView
-                android:id="@+id/valueText18"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText14"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="510dp" />
+                style="@style/setting_text_value"
+                android:translationX="520dp" />
             <TextView
-                android:id="@+id/valueText19"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText15"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="540dp" />
+                style="@style/setting_text_value"
+                android:translationX="560dp" />
             <TextView
-                android:id="@+id/valueText20"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText16"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="570dp" />
-            <TextView
-                android:id="@+id/valueText21"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
+                style="@style/setting_text_value"
                 android:translationX="600dp" />
             <TextView
-                android:id="@+id/valueText22"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText17"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="630dp" />
+                style="@style/setting_text_value"
+                android:translationX="640dp" />
+            <TextView
+                android:id="@+id/valueText18"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="680dp" />
+            <TextView
+                android:id="@+id/valueText19"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="720dp" />
+            <TextView
+                android:id="@+id/valueText20"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="760dp" />
+            <TextView
+                android:id="@+id/valueText21"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="800dp" />
+            <TextView
+                android:id="@+id/valueText22"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="840dp" />
             <TextView
                 android:id="@+id/valueText23"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="660dp" />
+                style="@style/setting_text_value"
+                android:translationX="880dp" />
             <TextView
                 android:id="@+id/valueText24"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="690dp" />
+                style="@style/setting_text_value"
+                android:translationX="920dp" />
             <TextView
                 android:id="@+id/valueText25"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="720dp" />
+                style="@style/setting_text_value"
+                android:translationX="960dp" />
             <TextView
                 android:id="@+id/valueText26"
                 android:layout_width="30dp"
