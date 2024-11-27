@@ -8,10 +8,17 @@
     <color name="purple_700">#B266FF</color>
     <color name="gray_light">#C0C0C0</color>
     <color name="gold">#FFD700</color>
+    <color name="transparent">#00000000</color>
+    <color name="semi_gold">#C7AD00</color>
     <color name="silver">#C0C0C0</color>
     <color name="bronze">#CD7F32</color>
     <color name="gray">#B0BEC5</color>
     <color name="black">#000000</color>
+    <color name="chart_gray">#646464</color>
+    <color name="chart_green">#008E00</color>
+    <color name="chart_semi_green">#4B644B</color>
+    <color name="chart_red">#CC0000</color>
+    <color name="chart_semi_red">#644B4B</color>
     <color name="colorPrimary">#FF6200EE</color> <!-- 원형 배경색을 설정 -->
     <color name="colorAccent">#FF03DAC5</color>
     <color name="omrRed">#FC6060</color>
@@ -32,6 +39,8 @@
     <color name="ball_stroke_41_45">#77AA00</color>
     <color name="ball_white">#FFFFFF</color>
     <color name="lottery_paper">#FAF8EF</color>
+    <color name="main_menu_color">#212121</color>
+    <color name="main_gold">#F7CE46</color>
 
     <!--<color name="omrPen_first_start">#80202020</color>
     <color name="omrPen_first_end">#80202020</color>

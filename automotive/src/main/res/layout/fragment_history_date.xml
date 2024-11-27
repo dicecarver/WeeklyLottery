@@ -1,0 +1,232 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dateLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <!-- 왼쪽: 리스트 영역 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- 날짜별 헤더 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            android:background="@color/main_menu_color"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/roundHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="회차"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/numbersHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="로또 당첨번호"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bonusHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="보너스"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/winnerCountHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="당첨자수"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/prizeAmountHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1인당 당첨금액"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 날짜별 당첨 번호 리스트 -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dateRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true"
+            android:scrollbarSize="20dp"
+            android:scrollbarDefaultDelayBeforeFade="1000"
+            android:scrollbars="vertical"/>
+    </LinearLayout>
+
+    <!-- 오른쪽: 상세 정보 영역 -->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/detailInfo_Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginVertical="20dp"/>
+            <FrameLayout
+                android:id="@+id/ballLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:weightSum="6">
+                <TextView
+                    android:layout_width="670dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ball_box"
+                    android:gravity="center" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/circleText1"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/circle_background_31_40"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="45sp"
+                        android:textColor="#000000" />
+                    <TextView
+                        android:id="@+id/circleText2"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/circle_background_31_40"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="45sp"
+                        android:textColor="#000000"/>
+                    <TextView
+                        android:id="@+id/circleText3"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/circle_background_31_40"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="45sp"
+                        android:textColor="#000000"/>
+                    <TextView
+                        android:id="@+id/circleText4"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/circle_background_31_40"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="45sp"
+                        android:textColor="#000000"/>
+                    <TextView
+                        android:id="@+id/circleText5"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/circle_background_31_40"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="45sp"
+                        android:textColor="#000000"/>
+                    <TextView
+                        android:id="@+id/circleText6"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/circle_background_31_40"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="45sp"
+                        android:textColor="#000000"/>
+                    <TextView
+                        android:text="+"
+                        android:textSize="50dp"
+                        android:textColor="@color/gray"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        />
+                    <TextView
+                        android:id="@+id/circleTextBonus"
+                        android:layout_width="77dp"
+                        android:layout_height="77dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/circle_background_31_40"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="45sp"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+            </FrameLayout>
+            <TextView
+                android:id="@+id/detailInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="항목을 선택하세요."
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/detailInfo_Prize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="80sp"
+                android:gravity="center" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -4,88 +4,95 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:gravity="center"
-    android:padding="16dp"
+    android:padding="40dp"
     android:weightSum="3">
 
     <!-- 첫 번째 버튼 -->
     <LinearLayout
         android:id="@+id/lottoPlaceButton"
+        android:background="@color/main_menu_color"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="10dp"
+        android:layout_marginHorizontal="20dp"
         android:clickable="true"
         android:focusable="true">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="400dp"
-            android:contentDescription="로또명당 아이콘"
-            android:src="@drawable/ic_lotto_place" />
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginHorizontal="20dp"
+            android:src="@drawable/main_menu_navi" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="로또명당"
-            android:textSize="40sp" />
+            android:paddingTop="40dp"
+            android:text="명당찾기"
+            android:textSize="50sp" />
     </LinearLayout>
 
     <!-- 두 번째 버튼 -->
     <LinearLayout
         android:id="@+id/historyButton"
+        android:background="@color/main_menu_color"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="10dp"
+        android:layout_marginHorizontal="20dp"
         android:clickable="true"
         android:focusable="true">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="400dp"
-            android:contentDescription="당첨히스토리 아이콘"
-            android:src="@drawable/ic_history" />
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginHorizontal="20dp"
+            android:src="@drawable/main_menu_history" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="당첨히스토리"
-            android:textSize="40sp"
+            android:text="당첨통계"
+            android:textSize="50sp"
             android:gravity="center"
-            android:paddingTop="10dp" />
+            android:paddingTop="40dp" />
     </LinearLayout>
 
     <!-- 세 번째 버튼 -->
     <LinearLayout
         android:id="@+id/gameButton"
+        android:background="@color/main_menu_color"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center"
         android:padding="10dp"
+        android:layout_marginHorizontal="20dp"
         android:clickable="true"
         android:focusable="true">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="400dp"
-            android:contentDescription="가상추첨게임 아이콘"
-            android:src="@drawable/ic_virtual_draw" />
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginHorizontal="20dp"
+            android:src="@drawable/main_menu_game" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="가상추첨게임"
-            android:textSize="40sp"
+            android:text="로또게임"
+            android:textStyle="bold"
+            android:textSize="50sp"
             android:gravity="center"
-            android:paddingTop="10dp" />
+            android:paddingTop="40dp" />
     </LinearLayout>
 
 </LinearLayout>

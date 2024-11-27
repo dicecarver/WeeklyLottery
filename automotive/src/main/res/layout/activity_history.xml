@@ -1,177 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
     <!-- 날짜별 및 번호별 버튼 -->
-    <LinearLayout
+    <com.google.android.material.tabs.TabLayout
+        android:layout_gravity="center_horizontal"
+        android:layout_marginVertical="30dp"
+        android:id="@+id/tabLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="@drawable/tab_bg"
+        app:tabIndicator="@drawable/tab_indicator_bg"
+        app:tabIndicatorColor="@color/main_gold"
+        app:tabIndicatorHeight="50dp"
+        app:tabMode="auto"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabTextColor="@color/main_gold"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextAppearance="@style/tab_text"/>
+
+
+    <!-- 레이아웃이 동적으로 변경될 컨테이너 -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/layoutContainer_history"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_marginBottom="8dp">
+        android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/dateButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="12dp"
-            android:background="@drawable/toggle_button_left"
-            android:text="날짜별"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/selectedTextColor"
-            android:gravity="center" />
 
-        <TextView
-            android:id="@+id/numberButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="12dp"
-            android:background="@drawable/toggle_button_right"
-            android:text="번호별"
-            android:textSize="16sp"
-            android:textStyle="normal"
-            android:textColor="@color/unselectedTextColor"
-            android:gravity="center" />
-    </LinearLayout>
-
-    <!-- 날짜별 레이아웃 -->
-    <LinearLayout
-        android:id="@+id/dateLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="visible">
-
-        <!-- 날짜별 헤더 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="6"
-            android:background="@android:color/darker_gray"
-            android:padding="8dp">
-
-            <TextView
-                android:id="@+id/roundHeader"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="회차"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/numbersHeader"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="로또 당첨번호"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/bonusHeader"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="보너스"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/winnerCountHeader"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="당첨자수"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/prizeAmountHeader"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1인당 당첨금액(원)"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <!-- 날짜별 당첨 번호 리스트 -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dateRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-    <!-- 번호별 레이아웃 -->
-    <LinearLayout
-        android:id="@+id/numberLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <!-- 차트 제목 -->
-        <TextView
-            android:id="@+id/chartTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="번호별 출현 횟수 통계"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:visibility="gone" />
-
-        <!-- 번호별 차트 -->
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barChart"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:visibility="gone" />
-
-        <!-- 보너스 옵션과 범위 설정 (번호별 탭에서만 표시) -->
-        <LinearLayout
-            android:id="@+id/bonusAndRangeOptions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp"
-            android:visibility="gone">
-
-            <!-- 보너스 포함 스위치 -->
-            <Switch
-                android:id="@+id/bonusSwitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="보너스 포함"
-                android:padding="8dp"
-                android:layout_gravity="center_horizontal" />
-
-            <!-- 범위 선택 라벨 -->
-            <TextView
-                android:id="@+id/rangeLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="카운트 범위 설정: 1~1144회차 (전회차)"
-                android:paddingTop="8dp"
-                android:layout_gravity="center_horizontal" />
-
-            <!-- 범위 선택 SeekBar -->
-            <SeekBar
-                android:id="@+id/rangeSeekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="10"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

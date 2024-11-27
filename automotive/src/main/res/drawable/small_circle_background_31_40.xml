@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/transparent" /> <!-- 원형 배경의 색상 -->
+    <stroke android:width="2dp" android:color="@color/ball_stroke_31_40" />
+    <corners android:radius="100dp" /> <!-- 반지름을 dp로 설정 (원형으로 만들기 위해 적당한 값 설정) -->
+    <padding android:left="0dp" android:right="0dp" android:top="0dp" android:bottom="0dp"/>
+</shape>

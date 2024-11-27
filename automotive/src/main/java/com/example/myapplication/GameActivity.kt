@@ -1,13 +1,16 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
-import android.widget.FrameLayout
 import android.content.Intent
+import android.view.View
+import android.widget.FrameLayout
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class GameActivity : AppCompatActivity() {
@@ -16,56 +19,76 @@ class GameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+        val tabLayout_game: TabLayout = findViewById(R.id.tabLayout_game)
+        val viewPager_game: ViewPager2 = findViewById(R.id.layoutContainer_game)
+        val viewPager_setting: FrameLayout = findViewById(R.id.settingsFragmentContainer)
+        val settingsButton = findViewById<Button>(R.id.settingsButton)
+
         // 기본적으로 공 추첨 레이아웃을 표시
-        showBallLayout()
 
-        // 공추첨 버튼 클릭 시
-        val skinBallButton = findViewById<TextView>(R.id.skin_ball_Button)
-        skinBallButton.setOnClickListener {
-            showBallLayout() // 공 추첨 레이아웃 표시
-            updateButtonStyles(skinBallButton, findViewById(R.id.skin_casino_Button))
-        }
+        // ViewPager에 Adapter 연결
+        val adapter_game = GamePagerAdapter(this)
+        viewPager_game.adapter = adapter_game
 
-        // 슬롯머신 버튼 클릭 시
-        val skinCasinoButton = findViewById<TextView>(R.id.skin_casino_Button)
-        skinCasinoButton.setOnClickListener {
-            showCasinoLayout() // 슬롯머신 레이아웃 표시
-            updateButtonStyles(findViewById(R.id.skin_ball_Button), skinCasinoButton)
-        }
+        // TabLayout과 ViewPager 연결
+        TabLayoutMediator(tabLayout_game, viewPager_game) { tab, position ->
+            tab.text = when (position) {
+                0 -> "BALL SKIN"
+                1 -> "MARKING SKIN"
+                else -> null
+            }
+            // Tab 클릭 시 설정 화면을 종료하고 ViewPager로 전환
+            tab.view.setOnClickListener {
+                // 설정 화면 종료
+                viewPager_setting.visibility = View.GONE
+                viewPager_game.visibility = View.VISIBLE
+                settingsButton.visibility = View.VISIBLE
+
+                // 선택된 Tab으로 ViewPager 페이지 전환
+                viewPager_game.currentItem = position
+            }
+        }.attach()
+
+
+
 
         // 설정 버튼 클릭 시
-        val settingsButton = findViewById<Button>(R.id.settingsButton)
         settingsButton.setOnClickListener {
-            openSettingsScreen()
+            showSettingsScreen(viewPager_setting, viewPager_game, settingsButton)
         }
     }
 
-    // 공 추첨 레이아웃을 표시하는 메서드
-    private fun showBallLayout() {
+    // 설정 화면을 표시하는 메서드
+    private fun showSettingsScreen(
+        settingsContainer: FrameLayout,
+        viewPager: ViewPager2,
+        settingsButton: Button
+    ) {
+        settingsContainer.visibility = View.VISIBLE
+        viewPager.visibility = View.GONE
+        settingsButton.visibility = View.INVISIBLE
+
+        // SettingsFragment 표시
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.layoutContainer, BallFragment())  // BallFragment로 교체
+        fragmentTransaction.replace(R.id.settingsFragmentContainer, SettingsFragment())
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 
-    // 슬롯머신 레이아웃을 표시하는 메서드
-    private fun showCasinoLayout() {
-        val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.layoutContainer, CasinoFragment())  // CasinoFragment로 교체
-        fragmentTransaction.commit()
-    }
+    override fun onBackPressed() {
+        val settingsContainer: FrameLayout = findViewById(R.id.settingsFragmentContainer)
+        val viewPager: ViewPager2 = findViewById(R.id.layoutContainer_game)
+        val settingsButton: Button = findViewById(R.id.settingsButton)
 
-    // 버튼 스타일 업데이트 (선택된 버튼 강조)
-    private fun updateButtonStyles(selected: TextView, unselected: TextView) {
-        selected.setTextColor(resources.getColor(R.color.selectedTextColor))
-        selected.setBackgroundResource(R.drawable.toggle_button_left) // 선택된 버튼 배경
+        if (settingsContainer.visibility == View.VISIBLE) {
+            settingsContainer.visibility = View.GONE
+            viewPager.visibility = View.VISIBLE
+            settingsButton.visibility = View.VISIBLE
 
-        unselected.setTextColor(resources.getColor(R.color.unselectedTextColor))
-        unselected.setBackgroundResource(R.drawable.toggle_button_right) // 비선택된 버튼 배경
-    }
-
-    // 설정 화면으로 전환하는 메서드
-    private fun openSettingsScreen() {
-        val intent = Intent(this, SettingsActivity::class.java)
-        this.startActivity(intent)
+            // BackStack에서 설정 화면 제거
+            supportFragmentManager.popBackStack()
+        } else {
+            super.onBackPressed()
+        }
     }
 }
