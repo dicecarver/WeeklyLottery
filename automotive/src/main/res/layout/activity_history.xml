@@ -7,23 +7,34 @@
     android:padding="16dp">
 
     <!-- 날짜별 및 번호별 버튼 -->
-    <com.google.android.material.tabs.TabLayout
-        android:layout_gravity="center_horizontal"
-        android:layout_marginVertical="30dp"
-        android:id="@+id/tabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:background="@drawable/tab_bg"
-        app:tabIndicator="@drawable/tab_indicator_bg"
-        app:tabIndicatorColor="@color/main_gold"
-        app:tabIndicatorHeight="50dp"
-        app:tabMode="auto"
-        app:tabIndicatorFullWidth="true"
-        app:tabIndicatorAnimationMode="elastic"
-        app:tabTextColor="@color/main_gold"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextAppearance="@style/tab_text"/>
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="30dp"
+            android:background="@drawable/tab_bg"
+            app:tabIndicator="@drawable/tab_indicator_bg"
+            app:tabIndicatorColor="@color/main_gold"
+            app:tabIndicatorHeight="50dp"
+            app:tabMode="auto"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabTextColor="@color/main_gold"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextAppearance="@style/tab_text"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/backButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right|center"
+            style="@style/BackButtonStyle"
+            android:text="BACK"
+            android:textSize="24sp" />
+    </FrameLayout>
 
     <!-- 레이아웃이 동적으로 변경될 컨테이너 -->
     <androidx.viewpager2.widget.ViewPager2

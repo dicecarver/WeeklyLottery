@@ -9,7 +9,7 @@
 
     <!-- 첫 번째 버튼 -->
     <LinearLayout
-        android:id="@+id/lottoPlaceButton"
+        android:id="@+id/naviButton"
         android:background="@color/main_menu_color"
         android:layout_width="0dp"
         android:layout_height="match_parent"

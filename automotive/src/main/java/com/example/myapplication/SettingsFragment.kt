@@ -55,10 +55,10 @@ class SettingsFragment : Fragment() {
             Toast.makeText(requireContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show()
         }
 
-        val cancelButton = rootView.findViewById<Button>(R.id.cancelButton)
-        cancelButton.setOnClickListener {
-            activity?.onBackPressed() // 부모 Activity의 onBackPressed() 호출
-        }
+        //val cancelButton = rootView.findViewById<Button>(R.id.cancelButton)
+        //cancelButton.setOnClickListener {
+        //    activity?.onBackPressed() // 부모 Activity의 onBackPressed() 호출
+        //}
 
         val resetButton = rootView.findViewById<Button>(R.id.resetButton)
         resetButton.setOnClickListener {

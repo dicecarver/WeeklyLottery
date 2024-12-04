@@ -5,4 +5,16 @@
     <string name="description_left_hand_button">Hello blank fragment</string>
     <string name="description_right_hand_button">Hello blank fragment</string>
     <string name="description_start_hand_button">Hello blank fragment</string>
+    <string name="recycler_view_description">Hello blank fragment</string>
+    <string name="distance">거리</string>
+    <string name="place_name">Place Name</string>
+    <string name="address">Address</string>
+    <string-array name="distance_filter_options">
+        <item>5km</item>
+        <item>10km</item>
+        <item>15km</item>
+        <item>20km</item>
+        <item>30km</item>
+        <item>50km</item>
+    </string-array>
 </resources>

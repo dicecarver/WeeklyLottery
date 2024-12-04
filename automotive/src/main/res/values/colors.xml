@@ -30,8 +30,8 @@
     <color name="omrPen_second_red">#FF941100</color>
     <color name="omrPen_first_green">#8077AA00</color>
     <color name="omrPen_second_green">#FF008F00</color>
-    <color name="omrPen_first_gold">#80E7D39F</color>
-    <color name="omrPen_second_gold">#FFD9BC77</color>
+    <color name="omrPen_first_gold">#80F7CE46</color>
+    <color name="omrPen_second_gold">#FFF7CE46</color>
     <color name="ball_stroke_1_10">#FFD700</color>
     <color name="ball_stroke_11_20">#0066FC</color>
     <color name="ball_stroke_21_30">#FC5588</color>
@@ -41,6 +41,13 @@
     <color name="lottery_paper">#FAF8EF</color>
     <color name="main_menu_color">#212121</color>
     <color name="main_gold">#F7CE46</color>
+
+    <color name="border_color">#2D2202</color> <!-- 카드뷰 테두리색-->
+    <color name="selected_item">#FFC107</color> <!-- 원하는 색상으로 변경 가능 -->
+    <color name="selected_textitem">#040301</color>
+    <color name="unselected_textitem">#FBF6EA</color>
+    <color name="back_gray">#919191</color>
+    <color name="settingsave_gray">#D6D6D6</color>
 
     <!--<color name="omrPen_first_start">#80202020</color>
     <color name="omrPen_first_end">#80202020</color>

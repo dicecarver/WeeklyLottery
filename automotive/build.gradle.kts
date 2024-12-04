@@ -39,6 +39,9 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.gms:play-services-maps:18.0.0")
+    implementation("org.osmdroid:osmdroid-android:6.1.13")
     implementation("androidx.fragment:fragment:1.6.1")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
@@ -48,3 +51,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
+// Parcelize 적용
+apply(plugin = "kotlin-parcelize")

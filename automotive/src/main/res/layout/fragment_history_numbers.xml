@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="번호별 출현 횟수 통계"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         android:textColor="@android:color/white" />
 
@@ -242,8 +242,9 @@
             android:id="@+id/bonusSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:trackTint="@color/ball_white"
             android:text="보너스 포함"
-            android:textSize="20dp"
+            android:textSize="40dp"
             android:padding="8dp"
             android:layout_gravity="center_horizontal" />
 
@@ -252,8 +253,8 @@
             android:id="@+id/rangeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="카운트 범위 설정: 1~1144회차 (전회차)"
-            android:textSize="20dp"
+            android:text="통계 범위 : 1~1144회차 (전회차)"
+            android:textSize="40dp"
             android:paddingTop="20dp"
             android:layout_gravity="center_horizontal" />
 

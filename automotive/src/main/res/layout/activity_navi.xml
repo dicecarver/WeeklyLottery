@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- TabLayout -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout_navi"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="30dp"
+            android:background="@drawable/tab_bg"
+            app:tabIndicator="@drawable/tab_indicator_bg"
+            app:tabIndicatorColor="@color/main_gold"
+            app:tabIndicatorHeight="50dp"
+            app:tabMode="auto"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabTextColor="@color/main_gold"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextAppearance="@style/tab_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <Spinner
+            android:layout_marginStart="20dp"
+            android:layout_gravity="left|bottom"
+            android:id="@+id/spinnerDistanceFilter"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:entries="@array/distance_filter_options"
+            style="@style/Widget.App.Spinner"
+            android:spinnerMode="dropdown" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/backButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right|center"
+            style="@style/BackButtonStyle"
+            android:text="BACK"
+            android:textSize="24sp"
+            />
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <!-- ViewPager2 -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/layoutContainer_navi"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout_navi"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- MapView와 Spinner, Button 포함 FrameLayout -->
+        <FrameLayout
+            android:id="@+id/mapViewContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/noselect_navi_background"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/mapView_null"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="40dp"
+                android:textColor="@color/ball_white"
+                android:text="명당을 선택해주세요"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"/>
+
+
+            <!-- OSMDroid MapView -->
+            <org.osmdroid.views.MapView
+                android:id="@+id/mapView_navi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+            <!-- ConstraintLayout으로 이미지 버튼 배치 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/btnNavigate"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="16dp"
+                    app:tint="@null"
+                    app:useCompatPadding="false"
+                    app:maxImageSize="80dp"
+                    app:backgroundTint="@color/main_gold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <ImageButton
+                    android:id="@+id/imageNaver"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_naver_map"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"
+                    android:padding="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/btnNavigate"
+                    app:layout_constraintEnd_toEndOf="@id/btnNavigate"
+                    android:layout_marginBottom="30dp" />
+
+                <ImageButton
+                    android:id="@+id/imageGoogle"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_google_map"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"
+                    android:padding="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/imageNaver"
+                    app:layout_constraintEnd_toEndOf="@id/imageNaver"
+                    android:layout_marginBottom="30dp" />
+
+                <ImageButton
+                    android:id="@+id/imageKakao"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/ic_kakao_map"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:scaleType="centerInside"
+                    android:adjustViewBounds="true"
+                    android:padding="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@id/imageGoogle"
+                    app:layout_constraintEnd_toEndOf="@id/imageGoogle"
+                    android:layout_marginBottom="30dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:text="길 안내"
+                android:textStyle="bold"
+                android:textSize="26sp"
+                android:textColor="@android:color/black"
+                android:layout_gravity="bottom|right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="35dp"/>
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginRight="18dp"
+                android:layout_gravity="bottom|right"
+                android:src="@drawable/ic_navi_button"/>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -15,4 +15,5 @@ class GamePagerAdapter(activity: FragmentActivity) : FragmentStateAdapter(activi
             else -> throw IllegalArgumentException("Invalid position")
         }
     }
+
 }

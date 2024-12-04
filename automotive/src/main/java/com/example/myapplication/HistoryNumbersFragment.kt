@@ -50,8 +50,9 @@ class HistoryNumbersFragment : Fragment() {
 
         loadRangeData()  // 메타데이터 파일에서 rangeOptions와 rangeDescriptions 불러오기
 
-        rangeSeekBar.progress = rangeSeekBar.max
-        rangeLabel.text = "카운트 범위 설정: ${rangeDescriptions[rangeSeekBar.progress]}"
+        //rangeSeekBar.progress = rangeSeekBar.max
+        rangeSeekBar.progress = (rangeSeekBar.max * 0.5).toInt()
+        rangeLabel.text = "통계 범위 : ${rangeDescriptions[rangeSeekBar.progress]}"
         rangeSeekBar.progressTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.main_gold))
         setupSeekBar()
         setupSwitch()
@@ -187,7 +188,7 @@ class HistoryNumbersFragment : Fragment() {
     private fun setupSeekBar() {
         rangeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                rangeLabel.text = "카운트 범위 설정: ${rangeDescriptions[progress]}"
+                rangeLabel.text = "통계 범위 : ${rangeDescriptions[progress]}"
                 updateChart()
             }
 

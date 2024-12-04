@@ -1,0 +1,120 @@
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="0dp"
+    app:cardCornerRadius="32dp"
+    app:cardElevation="8dp"
+    app:strokeColor="@color/border_color"
+    app:strokeWidth="2dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <!-- 거리 텍스트 -->
+        <TextView
+            android:id="@+id/distanceTextView"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|start"
+            android:gravity="start|center_vertical"
+            android:text="@string/distance"
+            android:textSize="24sp" />
+
+        <!-- 장소 정보 영역 -->
+        <LinearLayout
+            android:layout_width="599dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="108dp"
+            android:layout_marginEnd="100dp"
+            android:orientation="vertical">
+
+            <!-- 플레이스 이름 -->
+            <TextView
+                android:id="@+id/placeNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingVertical="12dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/place_name"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <!-- 플레이스 주소 -->
+            <TextView
+                android:id="@+id/placeAddressTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@string/address"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- 메달 및 당첨 횟수 영역 -->
+        <LinearLayout
+            android:id="@+id/medalLayout"
+            android:layout_width="200dp"
+            android:layout_height="139dp"
+            android:layout_gravity="center_vertical|end"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <!-- 금메달 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/goldMedalImageView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/navi_1st"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/firstPrizeCountTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <!-- 은메달 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/silverMedalImageView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/navi_2nd"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/secondPrizeCountTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textSize="24sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>

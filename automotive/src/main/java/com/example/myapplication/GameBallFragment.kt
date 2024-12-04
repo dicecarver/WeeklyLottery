@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.Typeface
 import android.media.SoundPool
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,11 +17,19 @@ import android.view.animation.BounceInterpolator
 import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
+import android.util.Log
+import androidx.appcompat.widget.AppCompatButton
+import androidx.viewpager2.widget.ViewPager2
 
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.io.BufferedReader
+import java.io.IOException
 import kotlin.random.Random
 
 class GameBallFragment : Fragment() {
@@ -34,12 +43,16 @@ class GameBallFragment : Fragment() {
     private lateinit var lefthandButton: ImageButton
     private lateinit var righthandButton: ImageButton
 
+    private lateinit var ballbox: TextView
+
     private lateinit var circleText1: TextView
     private lateinit var circleText2: TextView
     private lateinit var circleText3: TextView
     private lateinit var circleText4: TextView
     private lateinit var circleText5: TextView
     private lateinit var circleText6: TextView
+
+    private lateinit var popupButton: AppCompatButton
 
     private lateinit var soundPool: SoundPool
     private var rollSoundId: Int = -1
@@ -49,10 +62,10 @@ class GameBallFragment : Fragment() {
     // 변수를 선언하여 쉽게 조정할 수 있도록 설정
     private var rotationCount = 3 // 회전 횟수
     private var rotationSpeed = 3000 // 1초당 1바퀴
-    private var circleSize = 100 // 원 크기
+    private var circleSize = 200 // 원 크기
     private var borderWidth = 10 // 테두리 굵기
     private var numberText = "7" // 원 안의 숫자
-    private var startX = 0f // 시작 위치 (화면 왼쪽)
+    private var startX = -40f // 시작 위치 (화면 왼쪽)
     private var endX = 0f  // 끝 위치 (화면 오른쪽)
 
     // 이동 속도 (이 변수로 이동 시간을 조정할 수 있음)
@@ -83,12 +96,15 @@ class GameBallFragment : Fragment() {
         // TextView 배열을 통해 circleText1 ~ circleText6을 참조
 
         ballLayout = rootView.findViewById(R.id.ballLayout) // skin_ball.xml에서 ballLayout
-        setInitialAlpha(ballLayout, 0.2f) // alpha 0.2로 설정
+        ballbox = rootView.findViewById(R.id.ball_box)
+        setInitialAlpha(ballbox, 0.2f) // alpha 0.2로 설정
 
         startballButton = rootView.findViewById(R.id.startBallButton)
         lefthandButton = rootView.findViewById(R.id.lefthandButton)
         righthandButton = rootView.findViewById(R.id.righthandButton)
         setInitialAlpha(startballButton, 0.2f) // alpha 0.2로 설정
+
+        popupButton = rootView.findViewById(R.id.popupButton)
 
         updateCircle()
 
@@ -104,11 +120,12 @@ class GameBallFragment : Fragment() {
         lefthandButton.setOnClickListener {
             if (isRunning) return@setOnClickListener
             isRunning = true
+            popupButton.visibility = View.GONE
             disableButtons()
             startballButton.alpha = 1.0f
             animateHandButton(lefthandButton, righthandButton, moveToRight = true) {
                 // Start 버튼을 누르는 동작 수행
-                fadeInViews(ballLayout)
+                fadeInViews(ballbox)
                 startLottoDraw()
             }
         }
@@ -117,11 +134,12 @@ class GameBallFragment : Fragment() {
         righthandButton.setOnClickListener {
             if (isRunning) return@setOnClickListener
             isRunning = true
+            popupButton.visibility = View.GONE
             disableButtons()
             startballButton.alpha = 1.0f
             animateHandButton(righthandButton, lefthandButton, moveToRight = false) {
                 // Start 버튼을 누르는 동작 수행
-                fadeInViews(ballLayout)
+                fadeInViews(ballbox)
                 startLottoDraw()
             }
         }
@@ -134,6 +152,41 @@ class GameBallFragment : Fragment() {
         // 소리 로드
         rollSoundId = soundPool.load(context, R.raw.roll_sound, 1)  // 구르는 소리
         collisionSoundId = soundPool.load(context, R.raw.collision_sound, 1)  // 공 부딪히는 소리
+
+        popupButton.setOnClickListener {
+            popupButton.visibility = View.GONE
+        }
+
+        // AppCompatButton 참조
+        val popupButton: AppCompatButton = rootView.findViewById(R.id.popupButton)
+
+        // 전체 텍스트
+        val text = "START 버튼 누를 손을 선택해주세요"
+
+        // 특정 부분만 굵게 처리 (예: "펜" 부분)
+        val spannable = SpannableString(text)
+        val boldStart = text.indexOf("손") // "손" 시작 인덱스
+        val boldEnd = boldStart + "손".length // "손" 끝 인덱스
+        spannable.setSpan(
+            StyleSpan(Typeface.BOLD), // 굵게 처리
+            boldStart,
+            boldEnd,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        // 글자 크기 크게 (1.5배)
+        spannable.setSpan(
+            RelativeSizeSpan(1.5f),
+            boldStart,
+            boldEnd,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        // 버튼에 Spannable 텍스트 설정
+        popupButton.text = spannable
+
+        popupButton.setOnClickListener {
+            popupButton.visibility = View.GONE
+        }
 
         return rootView
     }
@@ -251,17 +304,17 @@ class GameBallFragment : Fragment() {
         }, 500) // 500 milliseconds = 0.5 seconds
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startRotationAndMoveAnimation(circleText1, 0, -350f - 300f) {
+            startRotationAndMoveAnimation(circleText1, 0, -1300f + 0f) {
                 Handler(Looper.getMainLooper()).postDelayed({
-                    startRotationAndMoveAnimation(circleText2, 1, -350f - 200f) {
+                    startRotationAndMoveAnimation(circleText2, 1, -1300f + 200f) {
                         Handler(Looper.getMainLooper()).postDelayed({
-                            startRotationAndMoveAnimation(circleText3, 2, -350f - 100f) {
+                            startRotationAndMoveAnimation(circleText3, 2, -1300f + 400f) {
                                 Handler(Looper.getMainLooper()).postDelayed({
-                                    startRotationAndMoveAnimation(circleText4, 3, -350f) {
+                                    startRotationAndMoveAnimation(circleText4, 3, -1300f + 600f) {
                                         Handler(Looper.getMainLooper()).postDelayed({
-                                            startRotationAndMoveAnimation(circleText5, 4, -350f + 100f) {
+                                            startRotationAndMoveAnimation(circleText5, 4, -1300f + 800f) {
                                                 Handler(Looper.getMainLooper()).postDelayed({
-                                                    startRotationAndMoveAnimation(circleText6, 5, -350f + 200f) {
+                                                    startRotationAndMoveAnimation(circleText6, 5, -1300f + 1000f) {
                                                         stopMixSound()
                                                         resetHandButtons()
                                                         enableButtons()
@@ -327,6 +380,11 @@ class GameBallFragment : Fragment() {
                                               idx_ball: Int,
                                               endX: Float,
                                               onAnimationEnd: (() -> Unit)? = null) {
+
+        if (!textView.isAttachedToWindow) {
+            Log.e("GameBallFragment", "View is detached, skipping animation")
+            return
+        }
 
         val initialX = startX
         val initialY = -100f // 화면 위쪽의 초기 위치
@@ -453,9 +511,9 @@ class GameBallFragment : Fragment() {
 
         // 선택된 버튼을 이동하여 Start 버튼 위로 위치
         val moveX = if (moveToRight) {
-            ObjectAnimator.ofFloat(selectedButton, "translationX", 120f)
+            ObjectAnimator.ofFloat(selectedButton, "translationX", 200f)
         } else {
-            ObjectAnimator.ofFloat(selectedButton, "translationX", -120f)
+            ObjectAnimator.ofFloat(selectedButton, "translationX", -200f)
         }.apply {
             duration = 500
         }
@@ -516,17 +574,55 @@ class GameBallFragment : Fragment() {
         }
     }
 
+    private fun restartMediaPlayer(startOffset: Int) {
+        try {
+            mixingBallMediaPlayer = MediaPlayer.create(requireContext(), R.raw.mixing_ball_sound).apply {
+                setVolume(0.25f, 0.25f)
+                seekTo(startOffset)
+                start()
+            }
+            Log.i("GameBallFragment", "MediaPlayer restarted successfully")
+        } catch (e: Exception) {
+            Log.e("GameBallFragment", "Failed to restart MediaPlayer: ${e.message}")
+        }
+    }
+
+    private fun playSoundSafely(mediaPlayer: MediaPlayer, startOffset: Int) {
+        try {
+            if (::mixingBallMediaPlayer.isInitialized) {
+                if (mediaPlayer.isPlaying) {
+                    mediaPlayer.stop()
+                }
+                mediaPlayer.reset()
+                mediaPlayer.release()
+            }
+        } catch (e: IllegalStateException) {
+            Log.e("GameBallFragment", "MediaPlayer IllegalStateException: ${e.message}")
+        } catch (e: Exception) {
+            Log.e("GameBallFragment", "Unexpected error: ${e.message}")
+        }
+
+        // MediaPlayer 새로 생성
+        mixingBallMediaPlayer = MediaPlayer.create(requireContext(), R.raw.mixing_ball_sound).apply {
+            seekTo(startOffset)
+            start()
+        }
+    }
+
     private fun playMixSound(startOffset: Int){
-        mixingBallMediaPlayer.seekTo(startOffset)
-        mixingBallMediaPlayer.setVolume(0.25f, 0.25f)
-        mixingBallMediaPlayer.start()
+        //mixingBallMediaPlayer.seekTo(startOffset)
+        //mixingBallMediaPlayer.setVolume(0.25f, 0.25f)
+        //mixingBallMediaPlayer.start()
+        playSoundSafely(mixingBallMediaPlayer, startOffset)
     }
     private fun stopMixSound() {
-        mixingBallMediaPlayer.let {
-            if (it.isPlaying) {
-                it.stop()
-                it.prepare() // stop 후 다시 사용하기 위해 prepare 호출
+        try {
+            if (::mixingBallMediaPlayer.isInitialized && mixingBallMediaPlayer.isPlaying) {
+                mixingBallMediaPlayer.stop()
             }
+            mixingBallMediaPlayer.release()
+        }catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "MediaPlayer IllegalStateException: ${e.message}")
         }
     }
 
@@ -549,14 +645,50 @@ class GameBallFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        // 초기화 작업
+        isRunning = false
+        resetHandButtons()
+        enableButtons()
+        updateCircle()
+
+        circleText1.visibility = View.INVISIBLE
+        circleText2.visibility = View.INVISIBLE
+        circleText3.visibility = View.INVISIBLE
+        circleText4.visibility = View.INVISIBLE
+        circleText5.visibility = View.INVISIBLE
+        circleText6.visibility = View.INVISIBLE
         soundPool.autoResume() // SoundPool 다시 시작
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        soundPool.release()
-        mixingBallMediaPlayer.release()
-        buttonMediaPlayer.release()
+        handler.removeCallbacksAndMessages(null) // 모든 지연 작업 취소
+        try {
+            if (::soundPool.isInitialized) {
+                soundPool.release() // SoundPool 해제
+            }
+        } catch (e: Exception) {
+            Log.e("GamePenFragment", "Error releasing SoundPool: ${e.message}")
+        }
+
+        try {
+            if (::mixingBallMediaPlayer.isInitialized) {
+                mixingBallMediaPlayer.stop()
+                mixingBallMediaPlayer.release() // MediaPlayer 해제
+            }
+        } catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "Error releasing MixingBallMediaPlayer: ${e.message}")
+        }
+
+        try {
+            if (::buttonMediaPlayer.isInitialized) {
+                buttonMediaPlayer.stop()
+                buttonMediaPlayer.release() // MediaPlayer 해제
+            }
+        } catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "Error releasing ButtonMediaPlayer: ${e.message}")
+        }
+
         isRunning = false // 상태 초기화
     }
 }

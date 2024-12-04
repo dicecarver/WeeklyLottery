@@ -7,6 +7,7 @@ import android.widget.SeekBar
 import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -40,13 +41,17 @@ class HistoryActivity : AppCompatActivity() {
         // TabLayout과 ViewPager 연결
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "날짜별"
-                1 -> "번호별"
+                0 -> "        날짜별        "
+                1 -> "        번호별        "
                 else -> null
             }
         }.attach()
 
-        // 기본적으로 Date Fragment 표시
+
+        val backButton: AppCompatButton = findViewById(R.id.backButton)
+        backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed() // 뒤로가기 액션 수행
+        }
 
     }
 }

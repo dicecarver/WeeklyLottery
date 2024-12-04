@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_gravity="center"
+        android:layout_marginStart="10dp"
         android:paddingBottom="10dp">
 
         <!-- 상단 제목 -->
@@ -16,7 +17,7 @@
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="로또 당첨확률 가중치 설정"
+            android:text="로또게임 번호별 당첨확률 조정"
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"
@@ -27,7 +28,7 @@
 
         <RelativeLayout
             android:layout_width="2000dp"
-            android:layout_height="500dp"
+            android:layout_height="650dp"
             android:columnCount="45"
             android:rowCount="3"
             android:orientation="horizontal">
@@ -160,869 +161,513 @@
                 android:translationX="960dp" />
             <TextView
                 android:id="@+id/valueText26"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="750dp" />
+                style="@style/setting_text_value"
+                android:translationX="1000dp" />
             <TextView
                 android:id="@+id/valueText27"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="780dp" />
+                style="@style/setting_text_value"
+                android:translationX="1040dp" />
             <TextView
                 android:id="@+id/valueText28"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="810dp" />
-            <TextView
-                android:id="@+id/valueText29"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="840dp" />
-            <TextView
-                android:id="@+id/valueText30"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="870dp" />
-            <TextView
-                android:id="@+id/valueText31"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="900dp" />
-            <TextView
-                android:id="@+id/valueText32"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="930dp" />
-            <TextView
-                android:id="@+id/valueText33"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="960dp" />
-            <TextView
-                android:id="@+id/valueText34"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="990dp" />
-            <TextView
-                android:id="@+id/valueText35"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="1020dp" />
-            <TextView
-                android:id="@+id/valueText36"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
-                android:translationX="1050dp" />
-            <TextView
-                android:id="@+id/valueText37"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
+                style="@style/setting_text_value"
                 android:translationX="1080dp" />
             <TextView
-                android:id="@+id/valueText38"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText29"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="1110dp" />
+                style="@style/setting_text_value"
+                android:translationX="1120dp" />
             <TextView
-                android:id="@+id/valueText39"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText30"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="1140dp" />
+                style="@style/setting_text_value"
+                android:translationX="1160dp" />
             <TextView
-                android:id="@+id/valueText40"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText31"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="1170dp" />
-            <TextView
-                android:id="@+id/valueText41"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="100"
-                android:gravity="center"
+                style="@style/setting_text_value"
                 android:translationX="1200dp" />
             <TextView
-                android:id="@+id/valueText42"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/valueText32"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="1230dp" />
+                style="@style/setting_text_value"
+                android:translationX="1240dp" />
+            <TextView
+                android:id="@+id/valueText33"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1280dp" />
+            <TextView
+                android:id="@+id/valueText34"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1320dp" />
+            <TextView
+                android:id="@+id/valueText35"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1360dp" />
+            <TextView
+                android:id="@+id/valueText36"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1400dp" />
+            <TextView
+                android:id="@+id/valueText37"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1440dp" />
+            <TextView
+                android:id="@+id/valueText38"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1480dp" />
+            <TextView
+                android:id="@+id/valueText39"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1520dp" />
+            <TextView
+                android:id="@+id/valueText40"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1560dp" />
+            <TextView
+                android:id="@+id/valueText41"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1600dp" />
+            <TextView
+                android:id="@+id/valueText42"
+                android:text="100"
+                style="@style/setting_text_value"
+                android:translationX="1640dp" />
             <TextView
                 android:id="@+id/valueText43"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="1260dp" />
+                style="@style/setting_text_value"
+                android:translationX="1680dp" />
             <TextView
                 android:id="@+id/valueText44"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="1290dp" />
+                style="@style/setting_text_value"
+                android:translationX="1720dp" />
             <TextView
                 android:id="@+id/valueText45"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="100"
-                android:gravity="center"
-                android:translationX="1320dp" />
+                style="@style/setting_text_value"
+                android:translationX="1760dp" />
 
             <!-- 두 번째 행 (각각의 컬럼에 SeekBar 설정) -->
             <SeekBar
                 android:id="@+id/seekBar1"
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="-185dp"
-                android:translationY="205dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="-282dp" />
             <SeekBar
                 android:id="@+id/seekBar2"
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="-155dp"
-                android:translationY="205dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="-242dp" />
             <SeekBar
                 android:id="@+id/seekBar3"
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="-70dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="-202dp" />
             <SeekBar
                 android:id="@+id/seekBar4"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="-40dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="-162dp" />
             <SeekBar
                 android:id="@+id/seekBar5"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="-10dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="-122dp" />
             <SeekBar
                 android:id="@+id/seekBar6"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="20dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="-82dp" />
             <SeekBar
                 android:id="@+id/seekBar7"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="50dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="-42dp" />
             <SeekBar
                 android:id="@+id/seekBar8"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="80dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="-2dp" />
             <SeekBar
                 android:id="@+id/seekBar9"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="110dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="42dp" />
             <SeekBar
                 android:id="@+id/seekBar10"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="140dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="82dp" />
             <SeekBar
                 android:id="@+id/seekBar11"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="170dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="122dp" />
             <SeekBar
                 android:id="@+id/seekBar12"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="200dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="162dp" />
             <SeekBar
                 android:id="@+id/seekBar13"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="230dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="202dp" />
             <SeekBar
                 android:id="@+id/seekBar14"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="260dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="242dp" />
             <SeekBar
                 android:id="@+id/seekBar15"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="290dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="282dp" />
             <SeekBar
                 android:id="@+id/seekBar16"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="320dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="322dp" />
             <SeekBar
                 android:id="@+id/seekBar17"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="350dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="362dp" />
             <SeekBar
                 android:id="@+id/seekBar18"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="380dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="402dp" />
             <SeekBar
                 android:id="@+id/seekBar19"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="410dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="442dp" />
             <SeekBar
                 android:id="@+id/seekBar20"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="440dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="482dp" />
             <SeekBar
                 android:id="@+id/seekBar21"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="470dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="522dp" />
             <SeekBar
                 android:id="@+id/seekBar22"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="500dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="562dp" />
             <SeekBar
                 android:id="@+id/seekBar23"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="530dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="602dp" />
             <SeekBar
                 android:id="@+id/seekBar24"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="560dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="642dp" />
             <SeekBar
                 android:id="@+id/seekBar25"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="590dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="682dp" />
             <SeekBar
                 android:id="@+id/seekBar26"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="620dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="722dp" />
             <SeekBar
                 android:id="@+id/seekBar27"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="650dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="762dp" />
             <SeekBar
                 android:id="@+id/seekBar28"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="680dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="802dp" />
             <SeekBar
                 android:id="@+id/seekBar29"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="710dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="842dp" />
             <SeekBar
                 android:id="@+id/seekBar30"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="740dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="882dp" />
             <SeekBar
                 android:id="@+id/seekBar31"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="770dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="922dp" />
             <SeekBar
                 android:id="@+id/seekBar32"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="800dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="962dp" />
             <SeekBar
                 android:id="@+id/seekBar33"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="830dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1002dp" />
             <SeekBar
                 android:id="@+id/seekBar34"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="860dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1042dp" />
             <SeekBar
                 android:id="@+id/seekBar35"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="890dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1082dp" />
             <SeekBar
                 android:id="@+id/seekBar36"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="920dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1122dp" />
             <SeekBar
                 android:id="@+id/seekBar37"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="950dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1162dp" />
             <SeekBar
                 android:id="@+id/seekBar38"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="980dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1202dp" />
             <SeekBar
                 android:id="@+id/seekBar39"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="1010dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1242dp" />
             <SeekBar
                 android:id="@+id/seekBar40"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="1040dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1282dp" />
             <SeekBar
                 android:id="@+id/seekBar41"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="1070dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1322dp" />
             <SeekBar
                 android:id="@+id/seekBar42"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="1100dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1362dp" />
             <SeekBar
                 android:id="@+id/seekBar43"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="1130dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1402dp" />
             <SeekBar
                 android:id="@+id/seekBar44"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="1160dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1442dp" />
             <SeekBar
                 android:id="@+id/seekBar45"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:rotation="270"
-                android:translationX="1190dp"
-                android:translationY="135dp"/>
+                style="@style/seeting_seekbar"
+                android:translationX="1482dp" />
 
             <!-- 세 번째 행 (각각의 컬럼에 TextView 설정) -->
             <TextView
                 android:id="@+id/numText1"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="1"
-                android:gravity="center"
-                android:translationY="300dp"
+                style="@style/setting_text_number"
                 android:translationX="0dp" />
             <TextView
                 android:id="@+id/numText2"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="2"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="30dp" />
+                style="@style/setting_text_number"
+                android:translationX="40dp" />
             <TextView
                 android:id="@+id/numText3"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="3"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="60dp" />
+                style="@style/setting_text_number"
+                android:translationX="80dp" />
             <TextView
                 android:id="@+id/numText4"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="4"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="90dp" />
-            <TextView
-                android:id="@+id/numText5"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="5"
-                android:gravity="center"
-                android:translationY="300dp"
+                style="@style/setting_text_number"
                 android:translationX="120dp" />
             <TextView
-                android:id="@+id/numText6"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/numText5"
+                android:text="5"
+                style="@style/setting_text_number"
+                android:translationX="160dp" />
+            <TextView
                 android:text="6"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="150dp" />
+                android:id="@+id/numText6"
+                style="@style/setting_text_number"
+                android:translationX="200dp" />
             <TextView
-                android:id="@+id/numText7"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="7"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="180dp" />
-            <TextView
-                android:id="@+id/numText8"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="8"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="210dp" />
-            <TextView
-                android:id="@+id/numText9"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:text="9"
-                android:gravity="center"
-                android:translationY="300dp"
+                android:id="@+id/numText7"
+                style="@style/setting_text_number"
                 android:translationX="240dp" />
             <TextView
+                android:text="8"
+                android:id="@+id/numText8"
+                style="@style/setting_text_number"
+                android:translationX="280dp" />
+            <TextView
+                android:id="@+id/numText9"
+                android:text="9"
+                style="@style/setting_text_number"
+                android:translationX="324dp" />
+            <TextView
                 android:id="@+id/numText10"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="10"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="270dp" />
+                style="@style/setting_text_number"
+                android:translationX="364dp" />
             <TextView
                 android:id="@+id/numText11"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="11"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="300dp" />
+                style="@style/setting_text_number"
+                android:translationX="404dp" />
             <TextView
                 android:id="@+id/numText12"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="12"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="330dp" />
+                style="@style/setting_text_number"
+                android:translationX="444dp" />
             <TextView
                 android:id="@+id/numText13"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="13"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="360dp" />
+                style="@style/setting_text_number"
+                android:translationX="484dp" />
             <TextView
                 android:id="@+id/numText14"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="14"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="390dp" />
+                style="@style/setting_text_number"
+                android:translationX="524dp" />
             <TextView
                 android:id="@+id/numText15"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="15"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="420dp" />
+                style="@style/setting_text_number"
+                android:translationX="564dp" />
             <TextView
                 android:id="@+id/numText16"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="16"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="450dp" />
+                style="@style/setting_text_number"
+                android:translationX="604dp" />
             <TextView
                 android:id="@+id/numText17"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="17"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="480dp" />
+                style="@style/setting_text_number"
+                android:translationX="644dp" />
             <TextView
                 android:id="@+id/numText18"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="18"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="510dp" />
+                style="@style/setting_text_number"
+                android:translationX="684dp" />
             <TextView
                 android:id="@+id/numText19"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="19"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="540dp" />
+                style="@style/setting_text_number"
+                android:translationX="724dp" />
             <TextView
                 android:id="@+id/numText20"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="20"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="570dp" />
+                style="@style/setting_text_number"
+                android:translationX="764dp" />
             <TextView
                 android:id="@+id/numText21"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="21"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="600dp" />
+                style="@style/setting_text_number"
+                android:translationX="804dp" />
             <TextView
                 android:id="@+id/numText22"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="22"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="630dp" />
+                style="@style/setting_text_number"
+                android:translationX="844dp" />
             <TextView
                 android:id="@+id/numText23"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="23"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="660dp" />
+                style="@style/setting_text_number"
+                android:translationX="884dp" />
             <TextView
                 android:id="@+id/numText24"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="24"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="690dp" />
+                style="@style/setting_text_number"
+                android:translationX="924dp" />
             <TextView
                 android:id="@+id/numText25"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="25"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="720dp" />
+                style="@style/setting_text_number"
+                android:translationX="964dp" />
             <TextView
                 android:id="@+id/numText26"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="26"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="750dp" />
+                style="@style/setting_text_number"
+                android:translationX="1004dp" />
             <TextView
                 android:id="@+id/numText27"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="27"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="780dp" />
+                style="@style/setting_text_number"
+                android:translationX="1044dp" />
             <TextView
                 android:id="@+id/numText28"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="28"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="810dp" />
+                style="@style/setting_text_number"
+                android:translationX="1084dp" />
             <TextView
                 android:id="@+id/numText29"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="29"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="840dp" />
+                style="@style/setting_text_number"
+                android:translationX="1124dp" />
             <TextView
                 android:id="@+id/numText30"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="30"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="870dp" />
+                style="@style/setting_text_number"
+                android:translationX="1164dp" />
             <TextView
                 android:id="@+id/numText31"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="31"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="900dp" />
+                style="@style/setting_text_number"
+                android:translationX="1204dp" />
             <TextView
                 android:id="@+id/numText32"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="32"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="930dp" />
+                style="@style/setting_text_number"
+                android:translationX="1244dp" />
             <TextView
                 android:id="@+id/numText33"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="33"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="960dp" />
+                style="@style/setting_text_number"
+                android:translationX="1284dp" />
             <TextView
                 android:id="@+id/numText34"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="34"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="990dp" />
+                style="@style/setting_text_number"
+                android:translationX="1324dp" />
             <TextView
                 android:id="@+id/numText35"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="35"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1020dp" />
+                style="@style/setting_text_number"
+                android:translationX="1364dp" />
             <TextView
                 android:id="@+id/numText36"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="36"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1050dp" />
+                style="@style/setting_text_number"
+                android:translationX="1404dp" />
             <TextView
                 android:id="@+id/numText37"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="37"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1080dp" />
+                style="@style/setting_text_number"
+                android:translationX="1444dp" />
             <TextView
                 android:id="@+id/numText38"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="38"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1110dp" />
+                style="@style/setting_text_number"
+                android:translationX="1484dp" />
             <TextView
                 android:id="@+id/numText39"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="39"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1140dp" />
+                style="@style/setting_text_number"
+                android:translationX="1524dp" />
             <TextView
                 android:id="@+id/numText40"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="40"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1170dp" />
+                style="@style/setting_text_number"
+                android:translationX="1564dp" />
             <TextView
                 android:id="@+id/numText41"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="41"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1200dp" />
+                style="@style/setting_text_number"
+                android:translationX="1604dp" />
             <TextView
                 android:id="@+id/numText42"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="42"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1230dp" />
+                style="@style/setting_text_number"
+                android:translationX="1644dp" />
             <TextView
                 android:id="@+id/numText43"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="43"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1260dp" />
+                style="@style/setting_text_number"
+                android:translationX="1684dp" />
             <TextView
                 android:id="@+id/numText44"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="44"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1290dp" />
+                style="@style/setting_text_number"
+                android:translationX="1724dp" />
             <TextView
                 android:id="@+id/numText45"
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
                 android:text="45"
-                android:gravity="center"
-                android:translationY="300dp"
-                android:translationX="1320dp" />
-
+                style="@style/setting_text_number"
+                android:translationX="1764dp" />
         </RelativeLayout>
         <!-- 취소, 초기화 버튼 -->
         <LinearLayout
@@ -1030,37 +675,35 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="30dp">
 
             <!-- 초기화 버튼 -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/suggestButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
+                style="@style/SettingSaveButtonStyle"
+                android:textSize="24sp"
                 android:text="AI추천" />
             <!-- 초기화 버튼 -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/resetButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
+                style="@style/SettingSaveButtonStyle"
+                android:textSize="24sp"
                 android:text="초기화" />
 
-            <!-- 취소 버튼 -->
-            <Button
-                android:id="@+id/cancelButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:text="뒤로가기" />
-
             <!-- 저장 버튼 -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/saveButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
                 android:layout_marginHorizontal="5dp"
+                style="@style/SettingSaveButtonStyle"
+                android:textSize="24sp"
                 android:text="저장" />
         </LinearLayout>
 

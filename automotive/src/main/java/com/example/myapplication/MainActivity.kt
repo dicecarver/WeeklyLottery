@@ -1,17 +1,24 @@
 package com.example.myapplication
-import android.content.Intent
+
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.TextView
+import android.content.Intent
+import android.widget.LinearLayout
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val naviButton = findViewById<LinearLayout>(R.id.naviButton)
         val historyButton = findViewById<LinearLayout>(R.id.historyButton)
         val gameButton = findViewById<LinearLayout>(R.id.gameButton)
+
+        naviButton.setOnClickListener {
+            val intent = Intent(this, NaviActivity::class.java)
+            startActivity(intent)
+        }
 
         historyButton.setOnClickListener {
             val intent = Intent(this, HistoryActivity::class.java)

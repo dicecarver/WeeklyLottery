@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenStreetMap Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    // 기본 위치를 설정 (서울 시청을 예시로 설정)
+    var map = L.map('map').setView([37.5665, 126.9780], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // JavaScript에서 새로운 위치로 이동하는 메서드
+    function updateMap(latitude, longitude, title) {
+        map.setView([latitude, longitude], 15);
+        L.marker([latitude, longitude]).addTo(map)
+            .bindPopup(title)
+            .openPopup();
+    }
+</script>
+</body>
+</html>

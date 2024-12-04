@@ -13,24 +13,40 @@ import android.os.Looper
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.animation.ObjectAnimator
+import android.graphics.Typeface
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
+import android.util.Log
 import android.widget.GridLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileInputStream
+import java.io.IOException
 import java.io.InputStreamReader
 
 class GamePenFragment : Fragment() {
 
-    private lateinit var mediaPlayer: MediaPlayer
+    private var isMediaPlayerReleased = false
+
+    private var flag_playing = false
+    private var isAnimationPlaying = false
+
+    private lateinit var markermediaPlayer: MediaPlayer
 
     private lateinit var paperLayout_lotterypaper: LinearLayout
     private lateinit var gridLayout_lotterypaper: GridLayout
     private lateinit var headImg_lotterypaper: ImageView
     private lateinit var dashline_lotterypaper: View
     private lateinit var dashline_lotterypaper_2: View
+
+    private lateinit var popupButton: AppCompatButton
 
     private val handler = Handler(Looper.getMainLooper())
     private val selectedTextViews = mutableListOf<TextView>() // 선택된 TextView 리스트
@@ -42,23 +58,43 @@ class GamePenFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_game_pen, container, false)
         resetTextViewColors(rootView, "Black")
 
+        flag_playing = false
+
+        markermediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound)
+
         paperLayout_lotterypaper = rootView.findViewById(R.id.paperLayout_lotterypaper)
         headImg_lotterypaper = rootView.findViewById(R.id.headImg_lotterypaper)
         dashline_lotterypaper = rootView.findViewById(R.id.headDashline_lotterypaper)
         gridLayout_lotterypaper = rootView.findViewById(R.id.gridLayout_lotterypaper)
         dashline_lotterypaper_2 = rootView.findViewById(R.id.headDashline_lotterypaper_2)
 
-        setInitialAlpha(headImg_lotterypaper, 0.2f)
-        setInitialAlpha(dashline_lotterypaper, 0.2f)
-        setInitialAlpha(gridLayout_lotterypaper, 0.2f)
-        setInitialAlpha(dashline_lotterypaper_2, 0.2f)
-
         val startSlotButton = rootView.findViewById<View>(R.id.startSlotButton)
         val startSlotButton_gold = rootView.findViewById<View>(R.id.startSlotButton_gold)
         val startSlotButton_red = rootView.findViewById<View>(R.id.startSlotButton_red)
         val startSlotButton_green = rootView.findViewById<View>(R.id.startSlotButton_green)
 
+        setInitialAlpha(paperLayout_lotterypaper, 0.05f)
+        setInitialAlpha(headImg_lotterypaper, 0.2f)
+        setInitialAlpha(dashline_lotterypaper, 0.2f)
+        setInitialAlpha(gridLayout_lotterypaper, 0.2f)
+        setInitialAlpha(dashline_lotterypaper_2, 0.2f)
+
+        setInitialAlpha(startSlotButton, 1.0f)
+        setInitialAlpha(startSlotButton_gold, 1.0f)
+        setInitialAlpha(startSlotButton_red, 1.0f)
+        setInitialAlpha(startSlotButton_green, 1.0f)
+
+        popupButton = rootView.findViewById(R.id.popupButton)
+
+
         startSlotButton.setOnClickListener {
+            if (flag_playing) {
+                Toast.makeText(requireContext(), "이미 로또 추첨이 진행중입니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            flag_playing = true
+            popupButton.visibility = View.GONE
+            setInitialAlpha(paperLayout_lotterypaper, 1.0f)
             setInitialAlpha(headImg_lotterypaper, 1.0f)
             setInitialAlpha(dashline_lotterypaper, 1.0f)
             setInitialAlpha(gridLayout_lotterypaper, 1.0f)
@@ -68,35 +104,87 @@ class GamePenFragment : Fragment() {
             // 새로운 6개의 TextView 선택
             val selectedSets = selectRandomTextViews(rootView, "Black")
             // 순차적으로 애니메이션 실행
-            revealSquentiallyWithDelay(selectedSets)
+            revealSquentiallyWithDelay(selectedSets){flag_playing = false}
 
         }
         startSlotButton_red.setOnClickListener {
+            if (flag_playing){
+                Toast.makeText(requireContext(), "이미 로또 추첨이 진행중입니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            flag_playing = true
+            popupButton.visibility = View.GONE
+            setInitialAlpha(paperLayout_lotterypaper, 1.0f)
             setInitialAlpha(headImg_lotterypaper, 1.0f)
             setInitialAlpha(dashline_lotterypaper, 1.0f)
             setInitialAlpha(gridLayout_lotterypaper, 1.0f)
             setInitialAlpha(dashline_lotterypaper_2, 1.0f)
             resetTextViewColors(rootView, "Red")
             val selectedSets = selectRandomTextViews(rootView, "Red")
-            revealSquentiallyWithDelay(selectedSets)
+            revealSquentiallyWithDelay(selectedSets){flag_playing = false}
         }
         startSlotButton_green.setOnClickListener {
+            if (flag_playing){
+                Toast.makeText(requireContext(), "이미 로또 추첨이 진행중입니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            flag_playing = true
+            popupButton.visibility = View.GONE
+            setInitialAlpha(paperLayout_lotterypaper, 1.0f)
             setInitialAlpha(headImg_lotterypaper, 1.0f)
             setInitialAlpha(dashline_lotterypaper, 1.0f)
             setInitialAlpha(gridLayout_lotterypaper, 1.0f)
             setInitialAlpha(dashline_lotterypaper_2, 1.0f)
             resetTextViewColors(rootView, "Green")
             val selectedSets = selectRandomTextViews(rootView, "Green")
-            revealSquentiallyWithDelay(selectedSets)
+            revealSquentiallyWithDelay(selectedSets){flag_playing = false}
         }
         startSlotButton_gold.setOnClickListener {
+            if (flag_playing){
+                Toast.makeText(requireContext(), "이미 로또 추첨이 진행중입니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            flag_playing = true
+            popupButton.visibility = View.GONE
+            setInitialAlpha(paperLayout_lotterypaper, 1.0f)
             setInitialAlpha(headImg_lotterypaper, 1.0f)
             setInitialAlpha(dashline_lotterypaper, 1.0f)
             setInitialAlpha(gridLayout_lotterypaper, 1.0f)
             setInitialAlpha(dashline_lotterypaper_2, 1.0f)
             resetTextViewColors(rootView, "Gold")
             val selectedSets = selectRandomTextViews(rootView, "Gold")
-            revealSquentiallyWithDelay(selectedSets)
+            revealSquentiallyWithDelay(selectedSets){flag_playing = false}
+        }
+
+        // AppCompatButton 참조
+        val popupButton: AppCompatButton = rootView.findViewById(R.id.popupButton)
+
+        // 전체 텍스트
+        val text = "마킹할 펜을 선택해주세요"
+
+        // 특정 부분만 굵게 처리 (예: "펜" 부분)
+        val spannable = SpannableString(text)
+        val boldStart = text.indexOf("펜") // "펜" 시작 인덱스
+        val boldEnd = boldStart + "펜".length // "펜" 끝 인덱스
+        spannable.setSpan(
+            StyleSpan(Typeface.BOLD), // 굵게 처리
+            boldStart,
+            boldEnd,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        // 글자 크기 크게 (1.5배)
+        spannable.setSpan(
+            RelativeSizeSpan(1.5f),
+            boldStart,
+            boldEnd,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        // 버튼에 Spannable 텍스트 설정
+        popupButton.text = spannable
+
+        popupButton.setOnClickListener {
+            popupButton.visibility = View.GONE
         }
 
         return rootView
@@ -132,17 +220,80 @@ class GamePenFragment : Fragment() {
             }
         }
     }
-
-    private fun playSound(startOffset: Int){
-        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound)
-        mediaPlayer.seekTo(startOffset)
-        mediaPlayer.start()
-    }
-    private fun stopSound() {
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.stop()
+    private fun restartMediaPlayer(startOffset: Int) {
+        try {
+            markermediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound).apply {
+                seekTo(startOffset)
+                start()
+            }
+            Log.i("GamePenFragment", "MediaPlayer restarted successfully")
+        } catch (e: Exception) {
+            Log.e("GamePenFragment", "Failed to restart MediaPlayer: ${e.message}")
         }
-        mediaPlayer.release()
+    }
+    private fun playSoundSafely(mediaPlayer: MediaPlayer, startOffset: Int) {
+        try {
+            if (::markermediaPlayer.isInitialized) {
+                if (mediaPlayer.isPlaying) {
+                    mediaPlayer.stop()
+                }
+                mediaPlayer.reset()
+                mediaPlayer.release()
+            }
+        } catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "MediaPlayer IllegalStateException: ${e.message}")
+        } catch (e: Exception) {
+            Log.e("GamePenFragment", "Unexpected error: ${e.message}")
+        }
+
+        // MediaPlayer 새로 생성
+        markermediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound).apply {
+            seekTo(startOffset)
+            start()
+        }
+    }
+    private fun playSound(startOffset: Int){
+        //mediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound)
+        //mediaPlayer.seekTo(startOffset)
+        //mediaPlayer.start()
+        playSoundSafely(markermediaPlayer, startOffset)
+
+        /*try {
+            // 기존 MediaPlayer가 존재하면 정리
+            if (::mediaPlayer.isInitialized) {
+                mediaPlayer.reset() // MediaPlayer 초기화
+                mediaPlayer.release()
+            }
+
+            // 새 MediaPlayer 생성
+            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound).apply {
+                seekTo(startOffset) // 시작 위치 설정
+                start() // 재생
+            }
+
+        } catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "IllegalStateException: ${e.message}")
+            restartMediaPlayer(startOffset) // 문제 발생 시 MediaPlayer 재시작
+
+        } catch (e: IOException) {
+            Log.e("GamePenFragment", "IOException: ${e.message}")
+            restartMediaPlayer(startOffset) // IOException 발생 시 재시작
+
+        } catch (e: Exception) {
+            Log.e("GamePenFragment", "Unexpected error: ${e.message}")
+            restartMediaPlayer(startOffset) // 기타 예외 처리
+        }*/
+    }
+
+    private fun stopSound() {
+        try {
+            if (::markermediaPlayer.isInitialized && markermediaPlayer.isPlaying) {
+                markermediaPlayer.stop()
+            }
+            markermediaPlayer.release()
+        }catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "MediaPlayer IllegalStateException: ${e.message}")
+        }
     }
 
     // 모든 TextView를 초기 색상으로 복구
@@ -287,19 +438,28 @@ class GamePenFragment : Fragment() {
         return weights
     }
 
-    private fun revealSquentiallyWithDelay(selectedSets: List<Triple<TextView, TextView, TextView>>){
+    private fun revealSquentiallyWithDelay(
+        selectedSets: List<Triple<TextView, TextView, TextView>>,
+        onComplete: () -> Unit // 애니메이션 완료 후 실행될 콜백
+    ) {
         var index = 0
 
         fun animateNextSet() {
             if (index < selectedSets.size) {
                 val (_, firstTextView, secondTextView) = selectedSets[index]
 
+                // 첫 번째 뷰 애니메이션
                 revealViewFromTop(firstTextView) {
+                    // 두 번째 뷰 애니메이션
                     revealViewFromBottom(secondTextView) {
                         index++
-                        handler.postDelayed({ animateNextSet()}, 500)
+                        // 다음 세트를 일정 시간 후 실행
+                        handler.postDelayed({ animateNextSet() }, 500)
                     }
                 }
+            } else {
+                // 모든 애니메이션 완료 시 콜백 호출
+                onComplete()
             }
         }
 
@@ -309,6 +469,12 @@ class GamePenFragment : Fragment() {
 
     private fun revealViewFromTop(view: View, onAnimationEnd: () -> Unit) {
         view.visibility = View.VISIBLE
+
+        if (!view.isAttachedToWindow) {
+            Log.e("GamePenFragment", "View is detached, skipping animation")
+            return
+        }
+
         val centerX = view.width / 2
         val centerY = (view.height * 0.1).toInt()
         val startRadius = (view.width / 2).toFloat()
@@ -332,6 +498,12 @@ class GamePenFragment : Fragment() {
     }
     private fun revealViewFromBottom(view: View, onAnimationEnd: () -> Unit) {
         view.visibility = View.VISIBLE
+
+        if (!view.isAttachedToWindow) {
+            Log.e("GamePenFragment", "View is detached, skipping animation")
+            return
+        }
+
         val centerX = view.width / 2
         val centerY = (view.height * 0.9).toInt()
         val startRadius = (view.width / 2).toFloat()
@@ -354,10 +526,30 @@ class GamePenFragment : Fragment() {
         revealAnimation.start()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        // 초기화 작업
+        flag_playing = false
+        //setInitialAlpha(headImg_lotterypaper, 1.0f)
+        //setInitialAlpha(dashline_lotterypaper, 1.0f)
+        //setInitialAlpha(gridLayout_lotterypaper, 1.0f)
+        //setInitialAlpha(dashline_lotterypaper_2, 1.0f)
+        resetTextViewColors(requireView(), "Black")
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        if (::mediaPlayer.isInitialized){
-            mediaPlayer.release()
+        flag_playing = false
+        handler.removeCallbacksAndMessages(null) // 모든 지연 작업 취소
+        try {
+            if (::markermediaPlayer.isInitialized) {
+                markermediaPlayer.stop()
+                markermediaPlayer.release()
+            }
+        } catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "Error releasing MediaPlayer: ${e.message}")
         }
     }
+
 }
