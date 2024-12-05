@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class PlaceAdapter(
-    private val places: List<Place>,
+    private var places: List<Place>,
     private val itemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder>() {
 
@@ -103,5 +103,10 @@ class PlaceAdapter(
                 }
             }
         }
+    }
+
+    fun updatePlaces(filteredPlaces: List<Place>) {
+        this.places = filteredPlaces
+        notifyDataSetChanged()
     }
 }

@@ -57,7 +57,7 @@ class NaviDistanceFragment : Fragment(), PlaceAdapter.OnItemClickListener {
 
         val defaultDistanceFilter = 20
 
-        setupRecyclerView(currentLocation, defaultDistanceFilter, PlaceRepository.FilterMode.RECOMMENDED)
+        setupRecyclerView_distance(currentLocation, defaultDistanceFilter, PlaceRepository.FilterMode.RECOMMENDED)
 
 
     }
@@ -76,7 +76,7 @@ class NaviDistanceFragment : Fragment(), PlaceAdapter.OnItemClickListener {
             .sortedBy { it.distance } // 거리로 오름차순 정렬
     }
 
-    private fun setupRecyclerView(location: Location, distanceFilter: Int = 20, filterMode: PlaceRepository.FilterMode = PlaceRepository.FilterMode.DISTANCE) {
+    private fun setupRecyclerView_distance(location: Location, distanceFilter: Int = 20, filterMode: PlaceRepository.FilterMode = PlaceRepository.FilterMode.DISTANCE) {
         Log.d(TAG, "Setting up RecyclerView with filter mode: $filterMode and distance filter: $distanceFilter km")
 
         val places = placeRepository.getPlacesFilteredByDistance(

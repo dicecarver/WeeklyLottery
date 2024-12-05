@@ -29,14 +29,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-        <Spinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:layout_marginStart="20dp"
             android:layout_gravity="left|bottom"
             android:id="@+id/spinnerDistanceFilter"
             android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:entries="@array/distance_filter_options"
-            style="@style/Widget.App.Spinner"
+            style="@style/MySpinnerLook"
             android:spinnerMode="dropdown" />
 
         <androidx.appcompat.widget.AppCompatButton

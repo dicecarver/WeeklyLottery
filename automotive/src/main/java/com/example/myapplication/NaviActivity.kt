@@ -1,10 +1,14 @@
 package com.example.myapplication
 
 import android.content.ContentValues.TAG
+import android.content.Intent
+import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.Spinner
@@ -22,6 +26,8 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
+import androidx.fragment.app.Fragment // 추가
+
 
 class NaviActivity : AppCompatActivity() {
 
@@ -40,6 +46,18 @@ class NaviActivity : AppCompatActivity() {
 
     private var selectedPlace: Place? = null
     private var areImagesVisible = false
+
+    private val mockLocation = Location("").apply {
+        latitude = 37.308711 // 현재 위치의 위도
+        longitude = 127.136805 // 현재 위치의 경도
+    }
+
+    private fun getCurrentLocation_navi(): Location {
+        return Location("dummyprovider").apply {
+            latitude = 37.308711
+            longitude = 127.136805
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,13 +98,77 @@ class NaviActivity : AppCompatActivity() {
             btnKakaoMap.visibility = visibility
         }
 
+        // 네이버 지도 버튼 클릭 리스너
+        btnNaverMap.setOnClickListener {
+            Log.d("NavigationBottomSheet", "Naver Map Button Clicked") // 추가
+            openMapApp("nmap://navigation?dlat=${selectedPlace?.latitude}&dlng=${selectedPlace?.longitude}&dname=${selectedPlace?.name}")
+        }
+
+        btnGoogleMap.setOnClickListener {
+            Log.d("NavigationBottomSheet", "Google Map Button Clicked") // 추가
+            openMapApp("http://maps.google.com/maps?daddr=${selectedPlace?.latitude},${selectedPlace?.longitude}")
+        }
+
+        btnKakaoMap.setOnClickListener {
+            Log.d("NavigationBottomSheet", "Kakao Map Button Clicked") // 추가
+            openMapApp("kakaomap://route?sp=${selectedPlace!!.latitude},${selectedPlace!!.longitude}&ep=${selectedPlace!!.latitude},${selectedPlace!!.longitude}&by=CAR")
+        }
+
         val backButton: AppCompatButton = findViewById(R.id.backButton)
         backButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed() // 뒤로가기 액션 수행
         }
 
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                // 선택된 아이템 가져오기
+                val selectedValue = parent?.getItemAtPosition(position).toString()
+
+                val distanceFilter = when (selectedValue) {
+                    "ALL" -> Int.MAX_VALUE
+                    "5km 이내" -> 5
+                    "10km 이내" -> 10
+                    "15km 이내" -> 15
+                    "20km 이내" -> 20
+                    "30km 이내" -> 30
+                    "50km 이내" -> 50
+                    else -> 20
+                }
+                // Fragment 추가
+
+                val myFragment = NaviRecommendFragment.newInstance(selectedValue)
+                if (myFragment.isAdded)
+                {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.layoutContainer_navi, myFragment)
+                    .commit()
+                    myFragment.setupRecyclerView(mockLocation, distanceFilter, PlaceRepository.FilterMode.RECOMMENDED)
+                //
+                }
+
+                // NaviRecommendFragment 초기화
+                //val fragmentManager = supportFragmentManager
+                //val transaction = fragmentManager.beginTransaction()
+
+                // 기존 Fragment를 제거하고 새 Fragment 추가
+                //val fragment = NaviRecommendFragment.newInstance(selectedValue)
+                //transaction.replace(R.id.layoutContainer_navi, fragment) // Fragment가 추가될 컨테이너 ID
+                //transaction.commit()
+
+                // Adapter의 데이터를 업데이트하여 새로운 상태 반영
+                //(viewPager_navi.adapter as NaviPagerAdapter).updateSelectedValue(selectedValue)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // 아무 것도 선택되지 않았을 때 처리 (필요시 구현)
+            }
+        }
 
     }
+    fun getSelectedSpinnerValue(): String {
+        return spinner.selectedItem.toString()
+    }
+
     private fun setupTabLayoutAndViewPager() {
         val adapter_navi = NaviPagerAdapter(this)
         viewPager_navi.adapter = adapter_navi
@@ -128,8 +210,22 @@ class NaviActivity : AppCompatActivity() {
         })
     }
 
-    // 네이버 지도 버튼 클릭 리스너
 
+    private fun openMapApp(uri: String) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+            if (intent.resolveActivity(this.packageManager) != null) {
+                startActivity(intent)
+                Log.d("NavigationBottomSheet", "Navigation Intent Started: $uri") // 추가
+            } else {
+                Toast.makeText(this, "해당 앱이 설치되어 있지 않습니다.", Toast.LENGTH_SHORT).show()
+                Log.e("NavigationBottomSheet", "App not installed for URI: $uri") // 추가
+            }
+        } catch (e: Exception) {
+            Log.e("NavigationBottomSheet", "Error opening map app with URI: $uri", e) // 추가
+            Toast.makeText(this, "길안내를 실행할 수 없습니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
     // 구글 지도 버튼 클릭 리스너
 
     // 카카오 지도 버튼 클릭 리스너
@@ -140,11 +236,13 @@ class NaviActivity : AppCompatActivity() {
             0 -> {
                 // 추천순 탭에서 선택된 장소 가져오기
                 // 이 부분은 실제 데이터 소스에 따라 변경 필요
+                spinner.visibility = View.VISIBLE
                 (viewPager_navi.adapter as NaviPagerAdapter).getSelectedPlaceForTab0()
             }
             1 -> {
                 // 거리순 탭에서 선택된 장소 가져오기
                 // 이 부분도 실제 데이터 소스에 따라 변경 필요
+                spinner.visibility = View.GONE
                 (viewPager_navi.adapter as NaviPagerAdapter).getSelectedPlaceForTab1()
             }
             else -> null

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.Switch
 import android.widget.TextView
@@ -17,8 +18,9 @@ class HistoryDateFragment : Fragment() {
 
     private lateinit var dateRecyclerView: RecyclerView
     private lateinit var lottoResults: List<LottoResult>
-    private lateinit var detailInfo: TextView
+    private lateinit var detailInfo_Prize_Head: TextView
     private lateinit var detailInfo_Prize: TextView
+    private lateinit var detailInfo_Date: TextView
     private lateinit var detailInfo_Title: TextView
     private lateinit var circleText1: TextView
     private lateinit var circleText2: TextView
@@ -26,7 +28,10 @@ class HistoryDateFragment : Fragment() {
     private lateinit var circleText4: TextView
     private lateinit var circleText5: TextView
     private lateinit var circleText6: TextView
+    private lateinit var plusImg: TextView
     private lateinit var circleTextBonus: TextView
+    private lateinit var ballLayout: FrameLayout
+    private lateinit var guidepopup: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +40,9 @@ class HistoryDateFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_history_date, container, false)
 
         dateRecyclerView = rootView.findViewById(R.id.dateRecyclerView)
-        detailInfo = rootView.findViewById(R.id.detailInfo) // 상세 정보 TextView
+        detailInfo_Prize_Head = rootView.findViewById(R.id.detailInfo_prize_head) // 상세 정보 TextView
         detailInfo_Prize = rootView.findViewById(R.id.detailInfo_Prize)
+        detailInfo_Date = rootView.findViewById(R.id.detailInfo_Date)
         detailInfo_Title = rootView.findViewById(R.id.detailInfo_Title)
         circleText1 = rootView.findViewById(R.id.circleText1)
         circleText2 = rootView.findViewById(R.id.circleText2)
@@ -44,7 +50,10 @@ class HistoryDateFragment : Fragment() {
         circleText4 = rootView.findViewById(R.id.circleText4)
         circleText5 = rootView.findViewById(R.id.circleText5)
         circleText6 = rootView.findViewById(R.id.circleText6)
+        plusImg = rootView.findViewById(R.id.plus_img)
         circleTextBonus = rootView.findViewById(R.id.circleTextBonus)
+        ballLayout = rootView.findViewById(R.id.ballLayout)
+        guidepopup = rootView.findViewById(R.id.guidepopup)
 
         lottoResults = parseDateData()
 
@@ -58,6 +67,11 @@ class HistoryDateFragment : Fragment() {
             updateDetailInfo(selectedResult)
         }
 
+        ballLayout.alpha = 0.2f
+        detailInfo_Prize_Head.alpha = 0.2f
+        guidepopup.visibility = View.VISIBLE
+
+
         return rootView
     }
 
@@ -68,10 +82,14 @@ class HistoryDateFragment : Fragment() {
     }
 
     private fun updateDetailInfo(selectedResult: LottoResult) {
+
+        ballLayout.alpha = 1.0f
+        detailInfo_Prize_Head.alpha = 1.0f
+        guidepopup.visibility = View.INVISIBLE
         // 1인당 당첨액 업데이트
-        detailInfo.text = "1인당 당첨액:"
-        detailInfo.textSize = 20f // 텍스트 크기 설정
+
         detailInfo_Prize.text = "${formatPrizeAmount(selectedResult.prizeAmount)}"
+        detailInfo_Date.text = selectedResult.rounddate
         detailInfo_Title.text = "[${selectedResult.round}회차]"
 
         // 로또 당첨 번호 업데이트
@@ -133,9 +151,10 @@ class HistoryDateFragment : Fragment() {
             val bonusNumber = tokens[7].toIntOrNull() ?: 0  // 보너스 번호
             val winnerCount = tokens[8].toIntOrNull() ?: 0  // 당첨자 수
             val prizeAmount = tokens[9].toLongOrNull() ?: 0  // 1인당 당첨금액
+            val dateround = tokens[10]  // Date
 
             // LottoResult 객체 생성
-            val result = LottoResult(round, winningNumbers, bonusNumber, winnerCount, prizeAmount)
+            val result = LottoResult(round, dateround, winningNumbers, bonusNumber, winnerCount, prizeAmount)
             lottoResults.add(result)
         }
         reader.close()

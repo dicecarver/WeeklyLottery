@@ -3,239 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <!-- 차트 제목 -->
-    <TextView
-        android:id="@+id/chartTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="번호별 출현 횟수 통계"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white" />
-
-    <!-- 번호별 차트 -->
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_gravity="center" />
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="-15dp"
-        android:layout_marginStart="10dp"
-        android:gravity="center"
-        android:layout_gravity="center">
-        <TextView
-            android:text="1"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="2"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="3"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="4"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="5"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="6"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="7"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="8"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="9"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="10"
-            android:background="@drawable/small_circle_background_1_10"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:layout_width="5dp"
-            android:layout_height="0dp"/>
-        <TextView
-            android:text="11"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="12"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="13"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="14"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="15"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="16"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="17"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="18"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="19"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="20"
-            android:background="@drawable/small_circle_background_11_20"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:layout_width="5dp"
-            android:layout_height="0dp"/>
-        <TextView
-            android:text="21"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="22"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="23"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="24"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="25"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="26"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="27"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="28"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="29"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="30"
-            android:background="@drawable/small_circle_background_21_30"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:layout_width="5dp"
-            android:layout_height="0dp"/>
-        <TextView
-            android:text="31"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="32"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="33"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="34"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="35"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="36"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="37"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="38"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="39"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="40"
-            android:background="@drawable/small_circle_background_31_40"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:layout_width="5dp"
-            android:layout_height="0dp"/>
-        <TextView
-            android:text="41"
-            android:background="@drawable/small_circle_background_41_45"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="42"
-            android:background="@drawable/small_circle_background_41_45"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="43"
-            android:background="@drawable/small_circle_background_41_45"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="44"
-            android:background="@drawable/small_circle_background_41_45"
-            style="@style/HistoryChartXaxis" />
-        <TextView
-            android:text="45"
-            android:background="@drawable/small_circle_background_41_45"
-            style="@style/HistoryChartXaxis" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/chartTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-    <!-- 보너스 옵션과 범위 설정 (번호별 탭에서만 표시) -->
-    <LinearLayout
-        android:id="@+id/bonusAndRangeOptions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="8dp">
+                android:text="번호별 출현 횟수"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white" />
+            <TextView
+                android:id="@+id/rangeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
 
         <!-- 보너스 포함 스위치 -->
         <Switch
@@ -244,30 +39,261 @@
             android:layout_height="wrap_content"
             android:trackTint="@color/ball_white"
             android:text="보너스 포함"
-            android:textSize="40dp"
+            android:textSize="20dp"
             android:padding="8dp"
             android:layout_gravity="center_horizontal" />
 
-        <!-- 범위 선택 라벨 -->
-        <TextView
-            android:id="@+id/rangeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="통계 범위 : 1~1144회차 (전회차)"
-            android:textSize="40dp"
-            android:paddingTop="20dp"
-            android:layout_gravity="center_horizontal" />
+        <!-- 번호별 차트 -->
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_gravity="center" />
 
-        <!-- 범위 선택 SeekBar -->
-        <SeekBar
-            android:id="@+id/rangeSeekBar"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:max="10"
-            android:thumb="@drawable/thumb_seekbar"
-            android:rotation="180"
-            android:layout_marginTop="4dp"
-            />
+            android:orientation="horizontal"
+            android:layout_marginTop="-15dp"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:layout_gravity="center">
+            <TextView
+                android:text="1"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="2"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="3"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="4"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="5"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="6"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="7"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="8"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="9"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="10"
+                android:background="@drawable/small_circle_background_1_10"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="0dp"/>
+            <TextView
+                android:text="11"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="12"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="13"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="14"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="15"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="16"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="17"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="18"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="19"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="20"
+                android:background="@drawable/small_circle_background_11_20"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="0dp"/>
+            <TextView
+                android:text="21"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="22"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="23"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="24"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="25"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="26"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="27"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="28"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="29"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="30"
+                android:background="@drawable/small_circle_background_21_30"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="0dp"/>
+            <TextView
+                android:text="31"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="32"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="33"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="34"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="35"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="36"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="37"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="38"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="39"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="40"
+                android:background="@drawable/small_circle_background_31_40"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:layout_width="5dp"
+                android:layout_height="0dp"/>
+            <TextView
+                android:text="41"
+                android:background="@drawable/small_circle_background_41_45"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="42"
+                android:background="@drawable/small_circle_background_41_45"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="43"
+                android:background="@drawable/small_circle_background_41_45"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="44"
+                android:background="@drawable/small_circle_background_41_45"
+                style="@style/HistoryChartXaxis" />
+            <TextView
+                android:text="45"
+                android:background="@drawable/small_circle_background_41_45"
+                style="@style/HistoryChartXaxis" />
+
+        </LinearLayout>
+
+        <!-- 보너스 옵션과 범위 설정 (번호별 탭에서만 표시) -->
+        <LinearLayout
+            android:id="@+id/bonusAndRangeOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
+
+            <!-- 범위 선택 SeekBar -->
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/rangeSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"
+                android:maxHeight="8dp"
+                android:thumbOffset="0dp"
+                android:thumb="@drawable/custom_thumb"
+                android:progressDrawable="@drawable/custom_seekbar_track"
+                android:rotation="180"
+                android:layout_marginTop="50dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:text="1회"
+                    android:textColor="@color/gray_light"
+                    android:textSize="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|top" />
+                <TextView
+                    android:id="@+id/last_round_txt"
+                    android:text="최근회"
+                    android:textColor="@color/gray_light"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|top" />
+            </FrameLayout>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 </FrameLayout>

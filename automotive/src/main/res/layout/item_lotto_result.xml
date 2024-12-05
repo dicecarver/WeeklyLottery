@@ -9,30 +9,93 @@
         android:id="@+id/roundText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:gravity="center"
         android:text="회차"
         android:textSize="16sp" />
 
     <!-- 로또 당첨 번호 -->
-    <TextView
-        android:id="@+id/numbersText"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="2.5"
         android:gravity="center"
-        android:text="로또 당첨번호"
-        android:textSize="16sp" />
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/numbersText_1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/small_circle_background_31_40"
+            android:text="로또 당첨번호1"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/numbersText_2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/small_circle_background_31_40"
+            android:text="로또 당첨번호2"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/numbersText_3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/small_circle_background_31_40"
+            android:text="로또 당첨번호3"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/numbersText_4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/small_circle_background_31_40"
+            android:text="로또 당첨번호4"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/numbersText_5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/small_circle_background_31_40"
+            android:text="로또 당첨번호5"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/numbersText_6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/small_circle_background_31_40"
+            android:text="로또 당첨번호6"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <!-- 보너스 -->
-    <TextView
-        android:id="@+id/bonusText"
+    <FrameLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.5"
         android:gravity="center"
-        android:text="보너스"
-        android:textSize="16sp" />
+        android:layout_gravity="center">
+        <TextView
+            android:id="@+id/bonusText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/black_small_circle"
+            android:padding="5dp"
+            android:text="보너스"
+            android:textSize="16sp" />
+    </FrameLayout>
 
     <!-- 당첨자 수 -->
     <TextView
@@ -42,6 +105,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="당첨자수"
+        android:layout_gravity="center"
         android:textSize="16sp" />
 
     <!-- 1인당 당첨금액 -->
@@ -49,8 +113,9 @@
         android:id="@+id/prizeAmountText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:gravity="center"
+        android:layout_gravity="center|right"
         android:text="1인당 당첨금액"
         android:textSize="16sp" />
 </LinearLayout>

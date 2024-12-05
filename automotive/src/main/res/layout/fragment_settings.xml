@@ -78,366 +78,367 @@
                 android:id="@+id/valueText9"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="320dp" />
+                android:translationX="322dp" />
             <TextView
                 android:id="@+id/valueText10"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="360dp" />
+                android:translationX="362dp" />
             <TextView
                 android:id="@+id/valueText11"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="400dp" />
+                android:translationX="402dp" />
             <TextView
                 android:id="@+id/valueText12"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="440dp" />
+                android:translationX="442dp" />
             <TextView
                 android:id="@+id/valueText13"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="480dp" />
+                android:translationX="482dp" />
             <TextView
                 android:id="@+id/valueText14"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="520dp" />
+                android:translationX="522dp" />
             <TextView
                 android:id="@+id/valueText15"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="560dp" />
+                android:translationX="562dp" />
             <TextView
                 android:id="@+id/valueText16"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="600dp" />
+                android:translationX="602dp" />
             <TextView
                 android:id="@+id/valueText17"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="640dp" />
+                android:translationX="642dp" />
             <TextView
                 android:id="@+id/valueText18"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="680dp" />
+                android:translationX="682dp" />
             <TextView
                 android:id="@+id/valueText19"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="720dp" />
+                android:translationX="722dp" />
             <TextView
                 android:id="@+id/valueText20"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="760dp" />
+                android:translationX="762dp" />
             <TextView
                 android:id="@+id/valueText21"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="800dp" />
+                android:translationX="802dp" />
             <TextView
                 android:id="@+id/valueText22"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="840dp" />
+                android:translationX="842dp" />
             <TextView
                 android:id="@+id/valueText23"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="880dp" />
+                android:translationX="882dp" />
             <TextView
                 android:id="@+id/valueText24"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="920dp" />
+                android:translationX="922dp" />
             <TextView
                 android:id="@+id/valueText25"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="960dp" />
+                android:translationX="962dp" />
             <TextView
                 android:id="@+id/valueText26"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1000dp" />
+                android:translationX="1002dp" />
             <TextView
                 android:id="@+id/valueText27"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1040dp" />
+                android:translationX="1042dp" />
             <TextView
                 android:id="@+id/valueText28"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1080dp" />
+                android:translationX="1082dp" />
             <TextView
                 android:id="@+id/valueText29"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1120dp" />
+                android:translationX="1122dp" />
             <TextView
                 android:id="@+id/valueText30"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1160dp" />
+                android:translationX="1162dp" />
             <TextView
                 android:id="@+id/valueText31"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1200dp" />
+                android:translationX="1202dp" />
             <TextView
                 android:id="@+id/valueText32"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1240dp" />
+                android:translationX="1242dp" />
             <TextView
                 android:id="@+id/valueText33"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1280dp" />
+                android:translationX="1282dp" />
             <TextView
                 android:id="@+id/valueText34"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1320dp" />
+                android:translationX="1322dp" />
             <TextView
                 android:id="@+id/valueText35"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1360dp" />
+                android:translationX="1362dp" />
             <TextView
                 android:id="@+id/valueText36"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1400dp" />
+                android:translationX="1402dp" />
             <TextView
                 android:id="@+id/valueText37"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1440dp" />
+                android:translationX="1442dp" />
             <TextView
                 android:id="@+id/valueText38"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1480dp" />
+                android:translationX="1482dp" />
             <TextView
                 android:id="@+id/valueText39"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1520dp" />
+                android:translationX="1522dp" />
             <TextView
                 android:id="@+id/valueText40"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1560dp" />
+                android:translationX="1562dp" />
             <TextView
                 android:id="@+id/valueText41"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1600dp" />
+                android:translationX="1602dp" />
             <TextView
                 android:id="@+id/valueText42"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1640dp" />
+                android:translationX="1642dp" />
             <TextView
                 android:id="@+id/valueText43"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1680dp" />
+                android:translationX="1682dp" />
             <TextView
                 android:id="@+id/valueText44"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1720dp" />
+                android:translationX="1722dp" />
             <TextView
                 android:id="@+id/valueText45"
                 android:text="100"
                 style="@style/setting_text_value"
-                android:translationX="1760dp" />
+                android:translationX="1764dp" />
 
             <!-- 두 번째 행 (각각의 컬럼에 SeekBar 설정) -->
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar1"
                 style="@style/seeting_seekbar"
+
                 android:translationX="-282dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar2"
                 style="@style/seeting_seekbar"
                 android:translationX="-242dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar3"
                 style="@style/seeting_seekbar"
                 android:translationX="-202dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar4"
                 style="@style/seeting_seekbar"
                 android:translationX="-162dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar5"
                 style="@style/seeting_seekbar"
                 android:translationX="-122dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar6"
                 style="@style/seeting_seekbar"
                 android:translationX="-82dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar7"
                 style="@style/seeting_seekbar"
                 android:translationX="-42dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar8"
                 style="@style/seeting_seekbar"
                 android:translationX="-2dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar9"
                 style="@style/seeting_seekbar"
                 android:translationX="42dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar10"
                 style="@style/seeting_seekbar"
                 android:translationX="82dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar11"
                 style="@style/seeting_seekbar"
                 android:translationX="122dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar12"
                 style="@style/seeting_seekbar"
                 android:translationX="162dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar13"
                 style="@style/seeting_seekbar"
                 android:translationX="202dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar14"
                 style="@style/seeting_seekbar"
                 android:translationX="242dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar15"
                 style="@style/seeting_seekbar"
                 android:translationX="282dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar16"
                 style="@style/seeting_seekbar"
                 android:translationX="322dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar17"
                 style="@style/seeting_seekbar"
                 android:translationX="362dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar18"
                 style="@style/seeting_seekbar"
                 android:translationX="402dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar19"
                 style="@style/seeting_seekbar"
                 android:translationX="442dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar20"
                 style="@style/seeting_seekbar"
                 android:translationX="482dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar21"
                 style="@style/seeting_seekbar"
                 android:translationX="522dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar22"
                 style="@style/seeting_seekbar"
                 android:translationX="562dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar23"
                 style="@style/seeting_seekbar"
                 android:translationX="602dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar24"
                 style="@style/seeting_seekbar"
                 android:translationX="642dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar25"
                 style="@style/seeting_seekbar"
                 android:translationX="682dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar26"
                 style="@style/seeting_seekbar"
                 android:translationX="722dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar27"
                 style="@style/seeting_seekbar"
                 android:translationX="762dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar28"
                 style="@style/seeting_seekbar"
                 android:translationX="802dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar29"
                 style="@style/seeting_seekbar"
                 android:translationX="842dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar30"
                 style="@style/seeting_seekbar"
                 android:translationX="882dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar31"
                 style="@style/seeting_seekbar"
                 android:translationX="922dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar32"
                 style="@style/seeting_seekbar"
                 android:translationX="962dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar33"
                 style="@style/seeting_seekbar"
                 android:translationX="1002dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar34"
                 style="@style/seeting_seekbar"
                 android:translationX="1042dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar35"
                 style="@style/seeting_seekbar"
                 android:translationX="1082dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar36"
                 style="@style/seeting_seekbar"
                 android:translationX="1122dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar37"
                 style="@style/seeting_seekbar"
                 android:translationX="1162dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar38"
                 style="@style/seeting_seekbar"
                 android:translationX="1202dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar39"
                 style="@style/seeting_seekbar"
                 android:translationX="1242dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar40"
                 style="@style/seeting_seekbar"
                 android:translationX="1282dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar41"
                 style="@style/seeting_seekbar"
                 android:translationX="1322dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar42"
                 style="@style/seeting_seekbar"
                 android:translationX="1362dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar43"
                 style="@style/seeting_seekbar"
                 android:translationX="1402dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar44"
                 style="@style/seeting_seekbar"
                 android:translationX="1442dp" />
-            <SeekBar
+            <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/seekBar45"
                 style="@style/seeting_seekbar"
                 android:translationX="1482dp" />

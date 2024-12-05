@@ -1,0 +1,7 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?android:colorControlHighlight">
+    <item android:drawable="@drawable/thumb_seekbar_setting"
+        android:width="40dp"
+        android:height="24dp">
+    </item>
+</ripple>

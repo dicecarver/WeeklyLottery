@@ -10,11 +10,11 @@
     <string name="place_name">Place Name</string>
     <string name="address">Address</string>
     <string-array name="distance_filter_options">
-        <item>5km</item>
-        <item>10km</item>
-        <item>15km</item>
-        <item>20km</item>
-        <item>30km</item>
-        <item>50km</item>
+        <item>5km 이내</item>
+        <item>10km 이내</item>
+        <item>15km 이내</item>
+        <item>20km 이내</item>
+        <item>30km 이내</item>
+        <item>50km 이내</item>
     </string-array>
 </resources>

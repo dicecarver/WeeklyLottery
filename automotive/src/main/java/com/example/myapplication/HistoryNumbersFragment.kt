@@ -33,9 +33,11 @@ class HistoryNumbersFragment : Fragment() {
     private lateinit var rangeSeekBar: SeekBar
     private lateinit var rangeLabel: TextView
     private lateinit var bonusSwitch: Switch
+    private lateinit var last_round_txt: TextView
 
     private var rangeOptions: List<String> = emptyList()
     private var rangeDescriptions: List<String> = emptyList()
+    private var last_round_val: String = "##"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,16 +49,19 @@ class HistoryNumbersFragment : Fragment() {
         rangeSeekBar = rootView.findViewById(R.id.rangeSeekBar)
         rangeLabel = rootView.findViewById(R.id.rangeLabel)
         bonusSwitch = rootView.findViewById(R.id.bonusSwitch)
+        last_round_txt = rootView.findViewById(R.id.last_round_txt)
 
         loadRangeData()  // 메타데이터 파일에서 rangeOptions와 rangeDescriptions 불러오기
 
         //rangeSeekBar.progress = rangeSeekBar.max
         rangeSeekBar.progress = (rangeSeekBar.max * 0.5).toInt()
-        rangeLabel.text = "통계 범위 : ${rangeDescriptions[rangeSeekBar.progress]}"
-        rangeSeekBar.progressTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.main_gold))
+        rangeLabel.text = "(${rangeDescriptions[rangeSeekBar.progress]})"
+        //rangeSeekBar.progressTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.main_gold))
         setupSeekBar()
         setupSwitch()
         updateChart()
+
+        last_round_txt.text = "${last_round_val}회"
 
         return rootView
     }
@@ -72,6 +77,7 @@ class HistoryNumbersFragment : Fragment() {
 
         val options = mutableListOf<String>()
         val descriptions = mutableListOf<String>()
+        val start_round = mutableListOf<String>()
 
         // 첫 번째 줄(헤더)은 건너뜁니다
         for (i in 1 until lines.size) {
@@ -80,10 +86,11 @@ class HistoryNumbersFragment : Fragment() {
             if (tokens.size >= 2 && !tokens[0].contains("_with_bonus")) {
                 options.add(tokens[0]) // 옵션 이름 (예: "All", "Recent_500", ...)
                 descriptions.add(tokens[1]) // 설명 (예: "1~1144회차 (전회차)", "645~1144회차 (최근 500회)", ...)
+                start_round.add(tokens[2])
             }
         }
         reader.close()
-
+        last_round_val = start_round[0]
         rangeOptions = options.toList()
         rangeDescriptions = descriptions.toList()
         rangeSeekBar.max = rangeOptions.size - 1  // SeekBar의 최대값 설정
@@ -188,7 +195,7 @@ class HistoryNumbersFragment : Fragment() {
     private fun setupSeekBar() {
         rangeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                rangeLabel.text = "통계 범위 : ${rangeDescriptions[progress]}"
+                rangeLabel.text = "(${rangeDescriptions[progress]})"
                 updateChart()
             }
 
