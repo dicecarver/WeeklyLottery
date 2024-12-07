@@ -12,14 +12,15 @@
     <application
         android:allowBackup="true"
         android:appCategory="audio"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/weeklylottery_logo3_512x512_japancolor"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/weeklylottery_logo3_512x512_japancolor"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Material3.Dark.NoActionBar">
+        android:theme="@style/Theme.MyApplication">
 
         <activity
             android:name=".SplashActivity"
+            android:theme="@style/Theme.MySplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +33,6 @@
         <activity android:name=".NaviActivity" android:exported="true" />
         <activity android:name=".HistoryActivity" android:exported="true" />
         <activity android:name=".GameActivity" android:exported="true" />
-        <activity android:name=".SettingsFragment" android:exported="true" />
 
     </application>
 </manifest>

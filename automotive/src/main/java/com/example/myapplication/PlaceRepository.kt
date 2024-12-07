@@ -5,6 +5,8 @@ import android.location.Location
 import android.util.Log
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.time.LocalDate
+import java.time.Period
 
 // 1. csv 읽어오는 함수
 // 2. 거리값 계산 및 리스트 정력(거리순 오름차순)
@@ -28,8 +30,10 @@ object PlaceRepository {
      */
     private fun loadPlacesFromCsv(context: Context): List<Place> {
         val placeList = mutableListOf<Place>()
+        val winDataMap = loadWinDataMap(context, "win_data_all.csv")
+        val today = LocalDate.now()
         try {
-            val inputStream = context.assets.open("modified_sorted_updated_csv_file.csv")
+            val inputStream = context.assets.open("stores_winning.csv")
             val reader = BufferedReader(InputStreamReader(inputStream))
             var isFirstLine = true
             reader.forEachLine { line ->
@@ -41,24 +45,52 @@ object PlaceRepository {
                 if (tokens.size >= 8) {
                     val name = tokens[0].trim()
                     val address = tokens[1].trim()
-                    val firstPrizeCount = tokens[2].trim().toIntOrNull() ?: 0
-                    val firstPrizeRounds = tokens[3].trim()
-                    val secondPrizeCount = tokens[4].trim().toIntOrNull() ?: 0
-                    val secondPrizeRounds = tokens[5].trim()
+                    val firstPrizeRounds = tokens[2].trim()
+                    val firstPrizeCount = tokens[3].trim().toIntOrNull() ?: 0
+                    val secondPrizeRounds = tokens[4].trim()
+                    val secondPrizeCount = tokens[5].trim().toIntOrNull() ?: 0
                     val latitude = tokens[6].trim().toDoubleOrNull() ?: 0.0
                     val longitude = tokens[7].trim().toDoubleOrNull() ?: 0.0
 
+                    // Calculate firstPrizeRecentText
+                    val firstPrizeRecentText = firstPrizeRounds
+                        .split(" ")
+                        .mapNotNull { it.toIntOrNull() }
+                        .maxOrNull()
+                        ?.let { round ->
+                            winDataMap[round]?.let { dateStr ->
+                                val date = LocalDate.parse(dateStr)
+                                getRelativeDateString(today, date)
+                            } ?: "없음"
+                        } ?: "없음"
+
+                    // Calculate secondPrizeRecentText
+                    val secondPrizeRecentText = secondPrizeRounds
+                        .split(" ")
+                        .mapNotNull { it.toIntOrNull() }
+                        .maxOrNull()
+                        ?.let { round ->
+                            winDataMap[round]?.let { dateStr ->
+                                val date = LocalDate.parse(dateStr)
+                                getRelativeDateString(today, date)
+                            } ?: "없음"
+                        } ?: "없음"
+
+
+                    // Add Place to the list
                     placeList.add(
                         Place(
                             name = name,
                             address = address,
                             firstPrizeCount = firstPrizeCount,
                             firstPrizeRounds = firstPrizeRounds,
+                            firstPrizeRecentText = firstPrizeRecentText,
                             secondPrizeCount = secondPrizeCount,
                             secondPrizeRounds = secondPrizeRounds,
+                            secondPrizeRecentText = secondPrizeRecentText,
                             latitude = latitude,
                             longitude = longitude,
-                            distance = 0.0 // 초기 거리값은 필요 시 이후 계산
+                            distance = 0.0
                         )
                     )
                 }
@@ -77,7 +109,7 @@ object PlaceRepository {
         context: Context,
         currentLocation: Location,
         distance: Int,
-        filterMode: FilterMode = FilterMode.DISTANCE // 기본값: 거리 필터 모드
+        filterMode: FilterMode
     ): List<Place> {
         Log.d(TAG, "Filtering places by distance: $distance km")
         val cachedPlaces = getPlaces(context) // 캐시된 데이터 활용
@@ -106,6 +138,39 @@ object PlaceRepository {
                         .thenBy { it.distance } // 거리값 오름차순 (작을수록 먼저)
                 )
             }
+        }
+    }
+
+    private fun loadWinDataMap(context: Context, fileName: String): Map<Int, String> {
+        val map = mutableMapOf<Int, String>()
+        try {
+            val inputStream = context.assets.open(fileName)
+            val reader = BufferedReader(InputStreamReader(inputStream))
+            reader.useLines { lines ->
+                lines.drop(1).forEach { line ->
+                    val tokens = line.split(",")
+                    if (tokens.size > 10) {
+                        val round = tokens[0].toIntOrNull()
+                        val date = tokens[10].trim()
+                        if (round != null) {
+                            map[round] = date
+                        }
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error reading win data file", e)
+        }
+        return map
+    }
+
+    private fun getRelativeDateString(today: LocalDate, targetDate: LocalDate): String {
+        val period = Period.between(targetDate, today)
+        return when {
+            period.years >= 1 -> "${period.years}년 전"
+            period.months >= 1 -> "${period.months}개월 전"
+            period.days >= 7 -> "${period.days / 7}주 전"
+            else -> "${period.days}일 전"
         }
     }
 

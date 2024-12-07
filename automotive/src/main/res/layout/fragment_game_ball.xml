@@ -15,22 +15,40 @@
 
         <TextView
             android:id="@+id/circleText1"
-            style="@style/game_ball_style" />
+            style="@style/game_ball_style"
+            android:fontFamily="@font/gmarketsansbold"
+            android:textSize="100sp"
+            android:textStyle="normal" />
         <TextView
             android:id="@+id/circleText2"
-            style="@style/game_ball_style" />
+            style="@style/game_ball_style"
+            android:fontFamily="@font/gmarketsansbold"
+            android:textSize="100sp"
+            android:textStyle="normal" />
         <TextView
             android:id="@+id/circleText3"
-            style="@style/game_ball_style" />
+            style="@style/game_ball_style"
+            android:fontFamily="@font/gmarketsansbold"
+            android:textSize="100sp"
+            android:textStyle="normal" />
         <TextView
             android:id="@+id/circleText4"
-            style="@style/game_ball_style" />
+            style="@style/game_ball_style"
+            android:fontFamily="@font/gmarketsansbold"
+            android:textSize="100sp"
+            android:textStyle="normal" />
         <TextView
             android:id="@+id/circleText5"
-            style="@style/game_ball_style" />
+            style="@style/game_ball_style"
+            android:fontFamily="@font/gmarketsansbold"
+            android:textSize="100sp"
+            android:textStyle="normal" />
         <TextView
             android:id="@+id/circleText6"
-            style="@style/game_ball_style" />
+            style="@style/game_ball_style"
+            android:fontFamily="@font/gmarketsansbold"
+            android:textSize="100sp"
+            android:textStyle="normal" />
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,8 +67,10 @@
                 android:layout_gravity="center"
                 style="@style/GamePopupButtonStyle"
                 android:text="START 버튼 누를 손을 선택해주세요"
-                android:textSize="24sp"
-                android:textAllCaps="false" />
+                android:textSize="32sp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:fontFamily="@font/gmarketsansbold" />
         </FrameLayout>
     </FrameLayout>
 
@@ -70,8 +90,7 @@
             android:scaleType="centerInside"
             android:layout_marginTop="5dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/start_ball"
-            android:contentDescription="@string/description_start_hand_button"/>
+            android:src="@drawable/start_ball_new"/>
         <ImageButton
             android:id="@+id/lefthandButton"
             android:gravity="center"
@@ -82,8 +101,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="200dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/hand_left"
-            android:contentDescription="@string/description_left_hand_button"/>
+            android:src="@drawable/hand_left"/>
 
         <ImageButton
             android:id="@+id/righthandButton"
@@ -95,8 +113,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="200dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/hand_right"
-            android:contentDescription="@string/description_right_hand_button"/>
+            android:src="@drawable/hand_right" />
 
     </FrameLayout>
 </LinearLayout>

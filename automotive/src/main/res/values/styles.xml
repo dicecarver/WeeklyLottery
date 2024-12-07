@@ -196,6 +196,12 @@
         <item name="android:background">@drawable/back_button</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="HistorySwitchStyle" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:thumbTint">@color/main_gold</item>
+        <item name="android:trackTint">@color/main_gold</item>
+        <item name="android:textColor">@color/ball_white</item>
+        <item name="colorControlActivated">@color/main_gold</item>
+    </style>
     <style name="SettingSaveButtonStyle">
         <item name="android:background">@drawable/settingsave_button</item>
         <item name="android:textColor">@color/black</item>

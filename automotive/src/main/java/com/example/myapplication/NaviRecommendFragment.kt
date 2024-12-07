@@ -41,7 +41,7 @@ class NaviRecommendFragment : Fragment(), PlaceAdapter.OnItemClickListener {
 
     private lateinit var recommendRecyclerView: RecyclerView
 
-
+    private lateinit var spinner: Spinner
     //private lateinit var lottoResults: List<LottoResult>
 
     private lateinit var placeAdapter: PlaceAdapter
@@ -74,6 +74,7 @@ class NaviRecommendFragment : Fragment(), PlaceAdapter.OnItemClickListener {
         val rootView = inflater.inflate(R.layout.fragment_navi_recommend, container, false)
 
         recommendRecyclerView = rootView.findViewById(R.id.recommendRecyclerView)
+        spinner = rootView.findViewById(R.id.spinnerDistanceFilter)
 
         return rootView
     }
@@ -88,7 +89,7 @@ class NaviRecommendFragment : Fragment(), PlaceAdapter.OnItemClickListener {
 
         //
         val parent_activity = requireActivity() as? NaviActivity
-        val spinnerValue = parent_activity?.getSelectedSpinnerValue()
+        val spinnerValue = getSelectedSpinnerValue()
 
         val distanceFilter = when (spinnerValue) {
             "ALL" -> Int.MAX_VALUE
@@ -106,7 +107,42 @@ class NaviRecommendFragment : Fragment(), PlaceAdapter.OnItemClickListener {
 
         //clearAndSetNewData()
 
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                // 선택된 아이템 가져오기
+                val selectedValue = parent?.getItemAtPosition(position).toString()
+
+                val distanceFilter = when (selectedValue) {
+                    "ALL" -> Int.MAX_VALUE
+                    "5km 이내" -> 5
+                    "10km 이내" -> 10
+                    "15km 이내" -> 15
+                    "20km 이내" -> 20
+                    "30km 이내" -> 30
+                    "50km 이내" -> 50
+                    else -> 20
+                }
+                val new_currentLocation = getCurrentLocation_navi()
+                setupRecyclerView(new_currentLocation, distanceFilter, PlaceRepository.FilterMode.RECOMMENDED)
+
+                // 선택된 장소 저장
+                parentAdapter.setSelectedPlaceForTab0(null)
+                val result = Bundle().apply {
+                    putParcelable("selectedPlace", null) // Place 객체는 Parcelable 구현이 필요
+                }
+                parentFragmentManager.setFragmentResult("placeSelected", result)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // 아무 것도 선택되지 않았을 때 처리 (필요시 구현)
+            }
+        }
+
     }
+    fun getSelectedSpinnerValue(): String {
+        return spinner.selectedItem.toString()
+    }
+
     private fun filterAndSortPlacesByDistance(
         placeList: List<Place>,
         currentLocation: Location,
@@ -122,9 +158,14 @@ class NaviRecommendFragment : Fragment(), PlaceAdapter.OnItemClickListener {
             val distance = currentLocation.distanceTo(placeLocation) // 거리 계산 (미터 단위)
             place.apply { this.distance = distance.toDouble() } // Place 객체에 distance 설정
         }.filter { it.distance!! / 1000 <= maxDistanceKm } // maxDistanceKm 이내로 필터링
+            .sortedWith(
+                compareByDescending<Place> { it.firstPrizeCount } // 1등 당첨 횟수 내림차순
+                    .thenByDescending { it.secondPrizeCount }    // 2등 당첨 횟수 내림차순
+                    .thenBy { it.distance }                     // 거리 오름차순
+            )
     }
 
-    fun setupRecyclerView(location: Location, distanceFilter: Int, filterMode: PlaceRepository.FilterMode = PlaceRepository.FilterMode.DISTANCE) {
+    private fun setupRecyclerView(location: Location, distanceFilter: Int, filterMode: PlaceRepository.FilterMode = PlaceRepository.FilterMode.DISTANCE) {
         Log.d(TAG, "Setting up RecyclerView with filter mode: $filterMode and distance filter: $distanceFilter km")
 
         val places = placeRepository.getPlacesFilteredByDistance(
@@ -135,15 +176,36 @@ class NaviRecommendFragment : Fragment(), PlaceAdapter.OnItemClickListener {
 
         )
 
-        // 1등 당첨 수 기준으로 정렬
-        val sortedPlaces = places.sortedByDescending { it.firstPrizeCount }
+        val placeList = PlaceRepository.getPlaces(requireContext()) // **데이터 가져오기
 
+        // 1등 당첨 수 기준으로 정렬
+        //val sortedPlaces = places.sortedByDescending { it.firstPrizeCount }
+
+        val sortedPlaces = filterAndSortPlacesByDistance(
+            placeList = placeRepository.getPlaces(requireContext()),
+            currentLocation = mockLocation,
+            maxDistanceKm = distanceFilter
+        )
+
+        // RecyclerView 초기화
+        val placeAdapter = PlaceAdapter(sortedPlaces, this)
+        recommendRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = placeAdapter
+        }
+        Log.d(TAG, "aaaaa-a ${sortedPlaces}")
+        Log.d(TAG, "aaaaa-b ${placeAdapter}")
+        /*
         // 현재 위치 가져오기 및 권한 확인
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
             val placeList = PlaceRepository.getPlaces(requireContext()) // **데이터 가져오기
+
+            // 1등 당첨 수 기준으로 정렬
+            //val sortedPlaces = places.sortedByDescending { it.firstPrizeCount }
+
             val sortedPlaces = filterAndSortPlacesByDistance(
                 placeList = placeRepository.getPlaces(requireContext()),
                 currentLocation = mockLocation,
@@ -165,7 +227,7 @@ class NaviRecommendFragment : Fragment(), PlaceAdapter.OnItemClickListener {
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 1000
             )
-        }
+        }*/
     }
 
     private fun getCurrentLocation_navi(): Location {
@@ -189,25 +251,6 @@ class NaviRecommendFragment : Fragment(), PlaceAdapter.OnItemClickListener {
 
         // FragmentResult로 데이터를 전달
         parentFragmentManager.setFragmentResult("placeSelected", result)
-    }
-
-    private fun clearAndSetNewData_dep(newPlaces: List<Place>) {
-        // 기존 데이터를 비우기
-        val emptyList = emptyList<Place>()
-        placeAdapter.updatePlaces(emptyList) // 어댑터의 데이터 초기화
-        placeAdapter.notifyDataSetChanged() // UI 업데이트
-
-        // 새로운 데이터로 설정
-        placeAdapter.updatePlaces(newPlaces)
-        placeAdapter.notifyDataSetChanged()
-    }
-
-    private fun clearAndSetNewData() {
-        // 기존 데이터를 비우기
-        val emptyList = emptyList<Place>()
-        placeAdapter.updatePlaces(emptyList) // 어댑터의 데이터 초기화
-        placeAdapter.notifyDataSetChanged() // UI 업데이트
-
     }
 
 }

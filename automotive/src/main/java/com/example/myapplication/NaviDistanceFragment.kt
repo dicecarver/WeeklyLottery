@@ -57,12 +57,12 @@ class NaviDistanceFragment : Fragment(), PlaceAdapter.OnItemClickListener {
 
         val defaultDistanceFilter = 20
 
-        setupRecyclerView_distance(currentLocation, defaultDistanceFilter, PlaceRepository.FilterMode.RECOMMENDED)
+        setupRecyclerView_distance(currentLocation, defaultDistanceFilter, PlaceRepository.FilterMode.DISTANCE)
 
 
     }
 
-    private fun filterAndSortPlacesByDistance(placeList: List<Place>, currentLocation: Location): List<Place> {
+    private fun filterAndSortPlacesByDistance(placeList: List<Place>, currentLocation: Location, distancefilter: Int): List<Place> {
         // 거리 계산 및 정렬
         return placeList.map { place ->
             val placeLocation = Location("").apply {
@@ -72,11 +72,11 @@ class NaviDistanceFragment : Fragment(), PlaceAdapter.OnItemClickListener {
 
             val distance = currentLocation.distanceTo(placeLocation) // 거리 계산 (미터 단위)
             place.apply { this.distance = distance.toDouble() } // Place 객체에 distance 설정
-        }.filter { it.distance!! / 1000 <= 10 } // 10km 이내 필터링
+        }.filter { it.distance!! / 1000 <= distancefilter } // 10km 이내 필터링
             .sortedBy { it.distance } // 거리로 오름차순 정렬
     }
 
-    private fun setupRecyclerView_distance(location: Location, distanceFilter: Int = 20, filterMode: PlaceRepository.FilterMode = PlaceRepository.FilterMode.DISTANCE) {
+    private fun setupRecyclerView_distance(location: Location, distanceFilter: Int, filterMode: PlaceRepository.FilterMode) {
         Log.d(TAG, "Setting up RecyclerView with filter mode: $filterMode and distance filter: $distanceFilter km")
 
         val places = placeRepository.getPlacesFilteredByDistance(
@@ -87,7 +87,7 @@ class NaviDistanceFragment : Fragment(), PlaceAdapter.OnItemClickListener {
         )
         Log.d(TAG, "distance" + places)
         // 1등 당첨 수 기준으로 정렬
-        val sortedPlaces = places.sortedByDescending { it.firstPrizeCount }
+        //val sortedPlaces = places.sortedByDescending { it.firstPrizeCount }
 
 
         // RecyclerView에 어댑터 설정
@@ -102,13 +102,27 @@ class NaviDistanceFragment : Fragment(), PlaceAdapter.OnItemClickListener {
         Log.d(TAG, "Loaded ${places.size} places into RecyclerView")
         */
 
+        val placeList = PlaceRepository.getPlaces(requireContext()) // **데이터 가져오기
+        val sortedPlaces = filterAndSortPlacesByDistance(placeList, mockLocation, distanceFilter)
+
+        // RecyclerView 초기화
+        val placeAdapter = PlaceAdapter(sortedPlaces, this)
+        distanceRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = placeAdapter
+        }
+        Log.d(TAG, "bbbbb-a ${sortedPlaces}")
+        Log.d(TAG, "bbbbb-b ${placeAdapter}")
+
+        /*
+
         // 현재 위치 가져오기 및 권한 확인
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
             val placeList = PlaceRepository.getPlaces(requireContext()) // **데이터 가져오기
-            val sortedPlaces = filterAndSortPlacesByDistance(placeList, mockLocation)
+            val sortedPlaces = filterAndSortPlacesByDistance(placeList, mockLocation, distanceFilter)
 
             // RecyclerView 초기화
             val placeAdapter = PlaceAdapter(sortedPlaces, this)
@@ -126,6 +140,7 @@ class NaviDistanceFragment : Fragment(), PlaceAdapter.OnItemClickListener {
                 1000
             )
         }
+        */
 
 
     }

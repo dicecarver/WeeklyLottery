@@ -29,16 +29,25 @@
 
         <!-- 설정 버튼 -->
         <LinearLayout
+            android:id="@+id/settingsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="25dp"
+            android:paddingVertical="7dp"
             android:layout_gravity="center"
-            android:layout_marginStart="320dp"
+            android:layout_marginStart="360dp"
+            android:background="@drawable/circle_setting"
             android:orientation="horizontal">
-            <ImageButton
-                android:id="@+id/settingsButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/ic_setting_button" />
+            <TextView
+                android:text="Settings"
+                android:textSize="25sp"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton

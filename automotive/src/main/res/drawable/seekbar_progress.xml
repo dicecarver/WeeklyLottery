@@ -3,7 +3,7 @@
     <item android:id="@+id/progressshape">
         <clip>
             <shape android:shape="rectangle">
-                <size android:height="3dp"/>
+                <size android:height="18dp"/>
                 <corners android:radius="50dp"/>
                 <solid android:color="@color/main_gold"/>
             </shape>

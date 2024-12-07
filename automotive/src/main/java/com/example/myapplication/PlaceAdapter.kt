@@ -43,15 +43,26 @@ class PlaceAdapter(
         private val addressTextView: TextView = itemView.findViewById(R.id.placeAddressTextView)
         private val firstPrizeCountTextView: TextView = itemView.findViewById(R.id.firstPrizeCountTextView)
         private val secondPrizeCountTextView: TextView = itemView.findViewById(R.id.secondPrizeCountTextView)
+        private val firstRecentPrizeTextView: TextView = itemView.findViewById(R.id.firstRecentPrizeText)
+        private val secondRecentPrizeTextView: TextView = itemView.findViewById(R.id.secondRecentPrizeText)
+
         private val distanceTextView: TextView = itemView.findViewById(R.id.distanceTextView)
 
         private val selectedCardViewColor = ContextCompat.getColor(itemView.context, R.color.selected_item)
         private val selectedCardViewTextColor = ContextCompat.getColor(itemView.context, R.color.selected_textitem)
-        private val defaultColor = ContextCompat.getColor(itemView.context, android.R.color.transparent)
+
+        private val defaultColor = ContextCompat.getColor(itemView.context, R.color.background_black)
+        //private val defaultColor = ContextCompat.bac(itemView.context, R.color.background_black)
+
         private val unselectedTextColor = ContextCompat.getColor(itemView.context, android.R.color.white)
         private val cardView: CardView = itemView.findViewById(R.id.CardView)
         private val placenametextView: TextView = itemView.findViewById(R.id.placeNameTextView)
         private val placeaddresstextview: TextView = itemView.findViewById(R.id.placeAddressTextView)
+
+        private val selectedFirstRecentTextColor = ContextCompat.getColor(itemView.context, R.color.omrPen_second_red)
+        private val selectedSecondRecentTextColor = ContextCompat.getColor(itemView.context, R.color.ball_stroke_31_40)
+        private val unselectedFirstRecentTextColor = ContextCompat.getColor(itemView.context, R.color.gold)
+        private val unselectedSecondRecentTextColor = ContextCompat.getColor(itemView.context, R.color.silver)
 //
 
         fun bind(place: Place, isSelected: Boolean) {
@@ -69,23 +80,29 @@ class PlaceAdapter(
             } else {
                 "계산 중..."
             }
+            firstRecentPrizeTextView.text = "최근 1등: ${place.firstPrizeRecentText.toString()}"
+            secondRecentPrizeTextView.text = "최근 2등: ${place.secondPrizeRecentText.toString()}"
 
 //            itemView.setBackgroundColor(if (isSelected) selectedColor else defaultColor)
             // 선택 여부에 따라 색상 변경
             if (isSelected) {
-                cardView.setCardBackgroundColor(selectedCardViewColor)
+                cardView.setBackgroundResource(R.drawable.card_selectecd_background)
                 placenametextView.setTextColor(selectedCardViewTextColor)
                 placeaddresstextview.setTextColor(selectedCardViewTextColor)
                 distanceTextView.setTextColor(selectedCardViewTextColor)
                 firstPrizeCountTextView.setTextColor(selectedCardViewTextColor)
                 secondPrizeCountTextView.setTextColor(selectedCardViewTextColor)
+                firstRecentPrizeTextView.setTextColor(selectedFirstRecentTextColor)
+                secondRecentPrizeTextView.setTextColor(selectedSecondRecentTextColor)
             } else {
-                cardView.setCardBackgroundColor(defaultColor)
+                cardView.setBackgroundResource(R.drawable.card_default_background)
                 placenametextView.setTextColor(unselectedTextColor)
                 placeaddresstextview.setTextColor(unselectedTextColor)
                 distanceTextView.setTextColor(unselectedTextColor)
                 firstPrizeCountTextView.setTextColor(unselectedTextColor)
                 secondPrizeCountTextView.setTextColor(unselectedTextColor)
+                firstRecentPrizeTextView.setTextColor(unselectedFirstRecentTextColor)
+                secondRecentPrizeTextView.setTextColor(unselectedSecondRecentTextColor)
             }
 
             itemView.setOnClickListener {

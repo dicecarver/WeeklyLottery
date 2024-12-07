@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatButton
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -26,7 +27,7 @@ class GameActivity : AppCompatActivity() {
         val tabLayout_game: TabLayout = findViewById(R.id.tabLayout_game)
         val viewPager_game: ViewPager2 = findViewById(R.id.layoutContainer_game)
         val viewPager_setting: FrameLayout = findViewById(R.id.settingsFragmentContainer)
-        val settingsButton = findViewById<ImageButton>(R.id.settingsButton)
+        val settingsButton = findViewById<LinearLayout>(R.id.settingsButton)
 
         // 기본적으로 공 추첨 레이아웃을 표시
 
@@ -37,8 +38,8 @@ class GameActivity : AppCompatActivity() {
         // TabLayout과 ViewPager 연결
         TabLayoutMediator(tabLayout_game, viewPager_game) { tab, position ->
             tab.text = when (position) {
-                0 -> "        BALL SKIN        "
-                1 -> "        MARKING SKIN        "
+                0 -> "        공 추첨 테마        "
+                1 -> "        펜 마킹 테마        "
                 else -> null
             }
             // Tab 클릭 시 설정 화면을 종료하고 ViewPager로 전환
@@ -96,7 +97,7 @@ class GameActivity : AppCompatActivity() {
     private fun showSettingsScreen(
         settingsContainer: FrameLayout,
         viewPager: ViewPager2,
-        settingsButton: ImageButton
+        settingsButton: LinearLayout
     ) {
         settingsContainer.visibility = View.VISIBLE
         viewPager.visibility = View.GONE
@@ -112,7 +113,7 @@ class GameActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val settingsContainer: FrameLayout = findViewById(R.id.settingsFragmentContainer)
         val viewPager: ViewPager2 = findViewById(R.id.layoutContainer_game)
-        val settingsButton: ImageButton = findViewById(R.id.settingsButton)
+        val settingsButton: LinearLayout = findViewById(R.id.settingsButton)
         val tabLayout_game: TabLayout = findViewById(R.id.tabLayout_game)
 
         if (settingsContainer.visibility == View.VISIBLE) {

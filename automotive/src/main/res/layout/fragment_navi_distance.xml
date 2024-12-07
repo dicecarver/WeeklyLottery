@@ -9,11 +9,12 @@
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/distanceRecyclerView"
+        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fastScrollEnabled="true"
         android:scrollbarSize="20dp"
-        android:scrollbarDefaultDelayBeforeFade="1000"
+        android:scrollbarDefaultDelayBeforeFade="500"
         android:scrollbars="vertical"/>
 
 </LinearLayout>

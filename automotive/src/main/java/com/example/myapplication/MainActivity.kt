@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.widget.ImageButton
 import android.widget.LinearLayout
 
 
@@ -11,9 +12,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val naviButton = findViewById<LinearLayout>(R.id.naviButton)
-        val historyButton = findViewById<LinearLayout>(R.id.historyButton)
-        val gameButton = findViewById<LinearLayout>(R.id.gameButton)
+        val naviButton = findViewById<ImageButton>(R.id.naviButton)
+        val historyButton = findViewById<ImageButton>(R.id.historyButton)
+        val gameButton = findViewById<ImageButton>(R.id.gameButton)
 
         naviButton.setOnClickListener {
             val intent = Intent(this, NaviActivity::class.java)

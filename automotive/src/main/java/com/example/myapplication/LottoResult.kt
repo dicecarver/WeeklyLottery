@@ -6,5 +6,16 @@ data class LottoResult(
     val winningNumbers: List<Int>,
     val bonusNumber: Int,
     val winnerCount: Int,
-    val prizeAmount: Long
+    val prizeAmount: Long,
+    val autoCount: Int,
+    val manualCount: Int,
+    val semiAutoCount: Int,
+    val regionStats: Map<String, RegionDetail>
+)
+
+data class RegionDetail(
+    val total: Int,
+    val auto: Int,
+    val manual: Int,
+    val semiAuto: Int
 )

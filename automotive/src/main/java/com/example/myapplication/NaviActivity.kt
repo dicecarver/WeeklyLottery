@@ -2,6 +2,14 @@ package com.example.myapplication
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Point
+import android.graphics.Typeface
+import android.graphics.drawable.BitmapDrawable
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
@@ -17,6 +25,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.res.ResourcesCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
@@ -41,8 +50,6 @@ class NaviActivity : AppCompatActivity() {
     private lateinit var btnNaverMap: ImageButton
     private lateinit var btnGoogleMap: ImageButton
     private lateinit var btnKakaoMap: ImageButton
-
-    private lateinit var spinner: Spinner
 
     private var selectedPlace: Place? = null
     private var areImagesVisible = false
@@ -73,8 +80,6 @@ class NaviActivity : AppCompatActivity() {
         btnNaverMap = findViewById(R.id.imageNaver)
         btnGoogleMap = findViewById(R.id.imageGoogle)
         btnKakaoMap = findViewById(R.id.imageKakao)
-
-        spinner = findViewById(R.id.spinnerDistanceFilter)
 
         val btnNavigate = findViewById<FloatingActionButton>(R.id.btnNavigate)
 
@@ -119,55 +124,8 @@ class NaviActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed() // 뒤로가기 액션 수행
         }
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                // 선택된 아이템 가져오기
-                val selectedValue = parent?.getItemAtPosition(position).toString()
-
-                val distanceFilter = when (selectedValue) {
-                    "ALL" -> Int.MAX_VALUE
-                    "5km 이내" -> 5
-                    "10km 이내" -> 10
-                    "15km 이내" -> 15
-                    "20km 이내" -> 20
-                    "30km 이내" -> 30
-                    "50km 이내" -> 50
-                    else -> 20
-                }
-                // Fragment 추가
-
-                val myFragment = NaviRecommendFragment.newInstance(selectedValue)
-                if (myFragment.isAdded)
-                {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.layoutContainer_navi, myFragment)
-                    .commit()
-                    myFragment.setupRecyclerView(mockLocation, distanceFilter, PlaceRepository.FilterMode.RECOMMENDED)
-                //
-                }
-
-                // NaviRecommendFragment 초기화
-                //val fragmentManager = supportFragmentManager
-                //val transaction = fragmentManager.beginTransaction()
-
-                // 기존 Fragment를 제거하고 새 Fragment 추가
-                //val fragment = NaviRecommendFragment.newInstance(selectedValue)
-                //transaction.replace(R.id.layoutContainer_navi, fragment) // Fragment가 추가될 컨테이너 ID
-                //transaction.commit()
-
-                // Adapter의 데이터를 업데이트하여 새로운 상태 반영
-                //(viewPager_navi.adapter as NaviPagerAdapter).updateSelectedValue(selectedValue)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // 아무 것도 선택되지 않았을 때 처리 (필요시 구현)
-            }
-        }
-
     }
-    fun getSelectedSpinnerValue(): String {
-        return spinner.selectedItem.toString()
-    }
+
 
     private fun setupTabLayoutAndViewPager() {
         val adapter_navi = NaviPagerAdapter(this)
@@ -236,13 +194,13 @@ class NaviActivity : AppCompatActivity() {
             0 -> {
                 // 추천순 탭에서 선택된 장소 가져오기
                 // 이 부분은 실제 데이터 소스에 따라 변경 필요
-                spinner.visibility = View.VISIBLE
+                //spinner.visibility = View.VISIBLE
                 (viewPager_navi.adapter as NaviPagerAdapter).getSelectedPlaceForTab0()
             }
             1 -> {
                 // 거리순 탭에서 선택된 장소 가져오기
                 // 이 부분도 실제 데이터 소스에 따라 변경 필요
-                spinner.visibility = View.GONE
+                //spinner.visibility = View.GONE
                 (viewPager_navi.adapter as NaviPagerAdapter).getSelectedPlaceForTab1()
             }
             else -> null
@@ -281,7 +239,7 @@ class NaviActivity : AppCompatActivity() {
 
         val location = GeoPoint(selectedPlace!!.latitude, selectedPlace!!.longitude)
         mapView.controller.setCenter(location)
-        mapView.controller.setZoom(15.0)
+        mapView.controller.setZoom(16.0)
 
         // 마커 추가
         mapView.overlays.clear()
@@ -289,7 +247,70 @@ class NaviActivity : AppCompatActivity() {
         marker.position = location
         marker.setAnchor(org.osmdroid.views.overlay.Marker.ANCHOR_CENTER, org.osmdroid.views.overlay.Marker.ANCHOR_BOTTOM)
         marker.title = selectedPlace!!.name
+
+        // 클릭 동작 비활성화
+        marker.setOnMarkerClickListener { _, _ ->
+            // 아무 동작도 하지 않음
+            true
+        }
+
+        // Bitmap으로 커스텀 마커 아이콘 크기 조정 및 설정
+        val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.custom_marker_icon)
+        val scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, 50, 85, false)
+        val customDrawable = BitmapDrawable(resources, scaledBitmap)
+        marker.icon = customDrawable
+
+        // 텍스트 오버레이 추가
+        val textOverlay = object : org.osmdroid.views.overlay.Overlay() {
+            override fun draw(canvas: Canvas, mapView: MapView, shadow: Boolean) {
+                super.draw(canvas, mapView, shadow)
+
+                // 마커 위치를 화면 좌표로 변환
+                val point = Point()
+                val projection = mapView.projection
+                projection.toPixels(marker.position, point)
+
+
+                // 텍스트 스타일 설정
+                val textPaint = Paint().apply {
+                    color = Color.BLACK // 텍스트 색상
+                    textSize = 24f // 텍스트 크기
+                    textAlign = Paint.Align.CENTER // 텍스트 중앙 정렬
+                    style = Paint.Style.FILL // 텍스트는 채우기 스타일
+                    isAntiAlias = true
+                    typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+                    typeface = ResourcesCompat.getFont(this@NaviActivity, R.font.gmarketsansbold)
+                }
+
+                // 텍스트 외곽선 스타일 설정 (외곽선용 Paint)
+                val strokePaint = Paint().apply {
+                    color = Color.WHITE // 외곽선 색상
+                    textSize = 24f // 텍스트 크기 (내부와 동일)
+                    textAlign = Paint.Align.CENTER // 텍스트 중앙 정렬
+                    style = Paint.Style.STROKE // 외곽선 스타일
+                    strokeWidth = 6f // 외곽선 두께
+                    isAntiAlias = true
+                    typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+                    typeface = ResourcesCompat.getFont(this@NaviActivity, R.font.gmarketsansbold)
+                }
+
+                // 텍스트 계산
+                val text = selectedPlace!!.name
+                val textYOffset = 20f // 텍스트 위치 조정 오프섹(마커 밑으로)
+
+                // 텍스트 외곽선 먼저 그리기
+                canvas.drawText(text,point.x.toFloat(),point.y.toFloat() + textYOffset,strokePaint)
+
+                // 텍스트 내부 채우기
+                canvas.drawText(text, point.x.toFloat(), point.y.toFloat() + textYOffset, textPaint)
+            }
+        }
+
+
         mapView.overlays.add(marker)
+        mapView.overlays.add(textOverlay)
+
+
     }
     private fun initializeMap(){
         val ctx = applicationContext

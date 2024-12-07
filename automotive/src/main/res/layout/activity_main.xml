@@ -8,91 +8,40 @@
     android:weightSum="3">
 
     <!-- 첫 번째 버튼 -->
-    <LinearLayout
+    <ImageButton
         android:id="@+id/naviButton"
-        android:background="@color/main_menu_color"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:src="@drawable/button_selector_navi"
         android:layout_weight="1"
-        android:orientation="vertical"
+        android:background="@null"
         android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:clickable="true"
-        android:focusable="true">
+        android:scaleType="fitCenter" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginHorizontal="20dp"
-            android:src="@drawable/main_menu_navi" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="40dp"
-            android:text="명당찾기"
-            android:textSize="50sp" />
-    </LinearLayout>
 
     <!-- 두 번째 버튼 -->
-    <LinearLayout
+    <ImageButton
         android:id="@+id/historyButton"
-        android:background="@color/main_menu_color"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:src="@drawable/button_selector_history"
         android:layout_weight="1"
-        android:orientation="vertical"
+        android:background="@null"
         android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:clickable="true"
-        android:focusable="true">
+        android:scaleType="fitCenter" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginHorizontal="20dp"
-            android:src="@drawable/main_menu_history" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="당첨통계"
-            android:textSize="50sp"
-            android:gravity="center"
-            android:paddingTop="40dp" />
-    </LinearLayout>
 
     <!-- 세 번째 버튼 -->
-    <LinearLayout
+    <ImageButton
         android:id="@+id/gameButton"
-        android:background="@color/main_menu_color"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:src="@drawable/button_selector_game"
         android:layout_weight="1"
-        android:orientation="vertical"
+        android:background="@null"
         android:gravity="center"
-        android:padding="10dp"
-        android:layout_marginHorizontal="20dp"
-        android:clickable="true"
-        android:focusable="true">
+        android:scaleType="fitCenter" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginHorizontal="20dp"
-            android:src="@drawable/main_menu_game" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로또게임"
-            android:textStyle="bold"
-            android:textSize="50sp"
-            android:gravity="center"
-            android:paddingTop="40dp" />
-    </LinearLayout>
 
 </LinearLayout>

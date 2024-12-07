@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 눌렸을 때 이미지 -->
+    <item android:drawable="@drawable/main_history_pushed_japanstyle" android:state_pressed="true" />
+    <!-- 기본 상태 이미지 -->
+    <item android:drawable="@drawable/main_history_normal_japanstyle" />
+</selector>

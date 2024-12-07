@@ -4,7 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingBottom="16dp">
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:layout_marginStart="20dp"
+        android:layout_gravity="left|top"
+        android:id="@+id/spinnerDistanceFilter"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:entries="@array/distance_filter_options"
+        style="@style/MySpinnerLook"
+        android:spinnerMode="dropdown" />
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
@@ -13,6 +23,6 @@
         android:layout_height="match_parent"
         android:fastScrollEnabled="true"
         android:scrollbarSize="20dp"
-        android:scrollbarDefaultDelayBeforeFade="1000"
+        android:scrollbarDefaultDelayBeforeFade="500"
         android:scrollbars="vertical"/>
 </LinearLayout>

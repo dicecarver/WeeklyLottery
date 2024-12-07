@@ -13,6 +13,7 @@ import android.os.Looper
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.animation.ObjectAnimator
+import android.content.ContentValues.TAG
 import android.graphics.Typeface
 import android.text.SpannableString
 import android.text.Spanned
@@ -73,7 +74,7 @@ class GamePenFragment : Fragment() {
         val startSlotButton_red = rootView.findViewById<View>(R.id.startSlotButton_red)
         val startSlotButton_green = rootView.findViewById<View>(R.id.startSlotButton_green)
 
-        setInitialAlpha(paperLayout_lotterypaper, 0.05f)
+        setInitialAlpha(paperLayout_lotterypaper, 0.2f)
         setInitialAlpha(headImg_lotterypaper, 0.2f)
         setInitialAlpha(dashline_lotterypaper, 0.2f)
         setInitialAlpha(gridLayout_lotterypaper, 0.2f)
@@ -246,7 +247,6 @@ class GamePenFragment : Fragment() {
             Log.e("GamePenFragment", "Unexpected error: ${e.message}")
         }
 
-        // MediaPlayer 새로 생성
         markermediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound).apply {
             seekTo(startOffset)
             start()
@@ -256,6 +256,7 @@ class GamePenFragment : Fragment() {
         //mediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound)
         //mediaPlayer.seekTo(startOffset)
         //mediaPlayer.start()
+
         playSoundSafely(markermediaPlayer, startOffset)
 
         /*try {
@@ -291,8 +292,8 @@ class GamePenFragment : Fragment() {
                 markermediaPlayer.stop()
             }
             markermediaPlayer.release()
-        }catch (e: IllegalStateException) {
-            Log.e("GamePenFragment", "MediaPlayer IllegalStateException: ${e.message}")
+        } catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "Error stopping MediaPlayer: ${e.message}")
         }
     }
 
@@ -345,6 +346,7 @@ class GamePenFragment : Fragment() {
         for (textView_second in allTextViewIds_second) {
             textView_second?.visibility = View.INVISIBLE
         }
+
     }
 
     // TextView를 랜덤으로 6개 선택
@@ -451,6 +453,7 @@ class GamePenFragment : Fragment() {
                 // 첫 번째 뷰 애니메이션
                 revealViewFromTop(firstTextView) {
                     // 두 번째 뷰 애니메이션
+
                     revealViewFromBottom(secondTextView) {
                         index++
                         // 다음 세트를 일정 시간 후 실행
@@ -468,62 +471,104 @@ class GamePenFragment : Fragment() {
 
 
     private fun revealViewFromTop(view: View, onAnimationEnd: () -> Unit) {
-        view.visibility = View.VISIBLE
-
         if (!view.isAttachedToWindow) {
             Log.e("GamePenFragment", "View is detached, skipping animation")
             return
         }
 
-        val centerX = view.width / 2
-        val centerY = (view.height * 0.1).toInt()
-        val startRadius = (view.width / 2).toFloat()
-        val finalRadius = Math.hypot(centerX.toDouble(), view.height.toDouble()).toFloat()
+        // 뷰를 VISIBLE로 설정하되, 투명하게 유지
+        view.alpha = 0f
+        view.visibility = View.VISIBLE
 
-        val revealAnimation = ViewAnimationUtils.createCircularReveal(view, centerX, centerY, startRadius, finalRadius)
-        revealAnimation.duration = 500
-        revealAnimation.interpolator = AccelerateDecelerateInterpolator()
-        revealAnimation.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animator: Animator) {
-                playSound(0)
+        view.post {
+            val centerX = view.width / 2
+            val centerY = (view.height * 0.1).toInt()
+            val startRadius = (view.width / 2).toFloat()
+            val finalRadius = Math.hypot(centerX.toDouble(), view.height.toDouble()).toFloat()
+
+            Log.d(TAG, "Animation parameters - centerX: $centerX, centerY: $centerY, startRadius: $startRadius, finalRadius: $finalRadius")
+
+            val revealAnimation = ViewAnimationUtils.createCircularReveal(
+                view, centerX, centerY, startRadius, finalRadius
+            ).apply {
+                duration = 500
+                addListener(object : Animator.AnimatorListener {
+                    override fun onAnimationStart(animator: Animator) {
+                        // 애니메이션 시작 시 뷰를 완전히 보이게 설정
+                        view.alpha = 1f
+                        playSound(0)
+                    }
+
+                    override fun onAnimationEnd(animator: Animator) {
+                        stopSound()
+                        onAnimationEnd()
+                    }
+
+                    override fun onAnimationCancel(animator: Animator) {}
+                    override fun onAnimationRepeat(animator: Animator) {}
+                })
             }
-            override fun onAnimationEnd(animator: Animator) {
-                stopSound()
-                onAnimationEnd()
-            }
-            override fun onAnimationCancel(animator: Animator) {}
-            override fun onAnimationRepeat(animator: Animator) {}
-        })
-        revealAnimation.start()
+
+            // 애니메이션 실행
+            revealAnimation.start()
+        }
     }
     private fun revealViewFromBottom(view: View, onAnimationEnd: () -> Unit) {
-        view.visibility = View.VISIBLE
-
         if (!view.isAttachedToWindow) {
             Log.e("GamePenFragment", "View is detached, skipping animation")
             return
         }
 
-        val centerX = view.width / 2
-        val centerY = (view.height * 0.9).toInt()
-        val startRadius = (view.width / 2).toFloat()
-        val finalRadius = Math.hypot(centerX.toDouble(), view.height.toDouble()).toFloat()
+        // 뷰를 VISIBLE로 설정하되, 투명하게 유지
+        view.alpha = 0f
+        view.visibility = View.VISIBLE
 
-        val revealAnimation = ViewAnimationUtils.createCircularReveal(view, centerX, centerY, startRadius, finalRadius)
-        revealAnimation.duration = 500
-        revealAnimation.interpolator = AccelerateDecelerateInterpolator()
-        revealAnimation.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animator: Animator) {
-                playSound(500)
+        view.post {
+            val centerX = view.width / 2
+            val centerY = (view.height * 0.9).toInt()
+            val startRadius = (view.width / 2).toFloat()
+            val finalRadius = Math.hypot(centerX.toDouble(), view.height.toDouble()).toFloat()
+
+            val revealAnimation = ViewAnimationUtils.createCircularReveal(
+                view, centerX, centerY, startRadius, finalRadius
+            ).apply {
+                duration = 500
+                interpolator = AccelerateDecelerateInterpolator() // 애니메이션 가속도 설정
+                addListener(object : Animator.AnimatorListener {
+                    override fun onAnimationStart(animator: Animator) {
+                        // 애니메이션 시작 시 뷰를 완전히 보이게 설정
+                        view.alpha = 1f
+                        playSound(500) // 소리 재생
+                    }
+
+                    override fun onAnimationEnd(animator: Animator) {
+                        stopSound() // 소리 정지
+                        onAnimationEnd() // 종료 후 콜백 호출
+                    }
+
+                    override fun onAnimationCancel(animator: Animator) {}
+                    override fun onAnimationRepeat(animator: Animator) {}
+                })
             }
-            override fun onAnimationEnd(animator: Animator) {
-                stopSound()
-                onAnimationEnd()
+
+            // 애니메이션 실행
+            revealAnimation.start()
+        }
+    }
+
+
+
+    override fun onPause() {
+        super.onPause()
+        flag_playing = false // 동작 상태 초기화
+        try {
+            if (::markermediaPlayer.isInitialized && markermediaPlayer.isPlaying) {
+                markermediaPlayer.stop()
             }
-            override fun onAnimationCancel(animator: Animator) {}
-            override fun onAnimationRepeat(animator: Animator) {}
-        })
-        revealAnimation.start()
+            markermediaPlayer.release()
+        }catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "MediaPlayer IllegalStateException: ${e.message}")
+        }
     }
 
     override fun onResume() {
@@ -535,7 +580,7 @@ class GamePenFragment : Fragment() {
         //setInitialAlpha(dashline_lotterypaper, 1.0f)
         //setInitialAlpha(gridLayout_lotterypaper, 1.0f)
         //setInitialAlpha(dashline_lotterypaper_2, 1.0f)
-        resetTextViewColors(requireView(), "Black")
+
     }
 
     override fun onDestroy() {

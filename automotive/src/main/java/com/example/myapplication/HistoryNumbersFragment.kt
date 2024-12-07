@@ -1,7 +1,13 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +21,8 @@ import java.io.InputStreamReader
 
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,8 +40,10 @@ class HistoryNumbersFragment : Fragment() {
     private lateinit var barChart: BarChart
     private lateinit var rangeSeekBar: SeekBar
     private lateinit var rangeLabel: TextView
-    private lateinit var bonusSwitch: Switch
+    private lateinit var bonusSwitch: SwitchCompat
     private lateinit var last_round_txt: TextView
+
+    private lateinit var popupHistoryButton: AppCompatButton
 
     private var rangeOptions: List<String> = emptyList()
     private var rangeDescriptions: List<String> = emptyList()
@@ -49,7 +59,33 @@ class HistoryNumbersFragment : Fragment() {
         rangeSeekBar = rootView.findViewById(R.id.rangeSeekBar)
         rangeLabel = rootView.findViewById(R.id.rangeLabel)
         bonusSwitch = rootView.findViewById(R.id.bonusSwitch)
+        //bonusSwitch.thumbTintList = ContextCompat.getColorStateList(requireContext(), R.color.main_gold)
+        //bonusSwitch.trackTintList = ContextCompat.getColorStateList(requireContext(), R.color.main_gold)
         last_round_txt = rootView.findViewById(R.id.last_round_txt)
+
+        popupHistoryButton = rootView.findViewById(R.id.popupHistoryButton)
+
+        // 전체 텍스트
+        val text = "황금돼지를 움직여 기간을 조정할 수 있어요"
+
+        // 특정 부분만 굵게 처리 (예: "펜" 부분)
+        val spannable = SpannableString(text)
+        val boldStart = text.indexOf("황금돼지") // "펜" 시작 인덱스
+        val boldEnd = boldStart + "황금돼지".length // "펜" 끝 인덱스
+        spannable.setSpan(
+            StyleSpan(Typeface.BOLD), // 굵게 처리
+            boldStart,
+            boldEnd,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        // 글자 크기 크게 (1.5배)
+        spannable.setSpan(
+            RelativeSizeSpan(1.5f),
+            boldStart,
+            boldEnd,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        popupHistoryButton.text = spannable
 
         loadRangeData()  // 메타데이터 파일에서 rangeOptions와 rangeDescriptions 불러오기
 
@@ -62,6 +98,10 @@ class HistoryNumbersFragment : Fragment() {
         updateChart()
 
         last_round_txt.text = "${last_round_val}회"
+
+        popupHistoryButton.setOnClickListener {
+            popupHistoryButton.visibility = View.GONE
+        }
 
         return rootView
     }
@@ -195,6 +235,7 @@ class HistoryNumbersFragment : Fragment() {
     private fun setupSeekBar() {
         rangeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                popupHistoryButton.visibility = View.GONE
                 rangeLabel.text = "(${rangeDescriptions[progress]})"
                 updateChart()
             }

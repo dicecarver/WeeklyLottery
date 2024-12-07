@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -33,15 +34,30 @@
         </LinearLayout>
 
         <!-- 보너스 포함 스위치 -->
-        <Switch
-            android:id="@+id/bonusSwitch"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:trackTint="@color/ball_white"
-            android:text="보너스 포함"
-            android:textSize="20dp"
-            android:padding="8dp"
-            android:layout_gravity="center_horizontal" />
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal">
+            <TextView
+                android:text="보너스 포함"
+                android:textSize="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"/>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/bonusSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="2dp"
+                android:checked="true"
+                app:switchMinWidth="60dp"
+                android:thumb="@drawable/shape_switch_thumb"
+                app:track="@drawable/selector_switch"
+                />
+        </LinearLayout>
 
         <!-- 번호별 차트 -->
         <com.github.mikephil.charting.charts.BarChart
@@ -267,7 +283,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:max="10"
-                android:maxHeight="8dp"
+                android:maxHeight="18dp"
+                android:maxWidth="30dp"
                 android:thumbOffset="0dp"
                 android:thumb="@drawable/custom_thumb"
                 android:progressDrawable="@drawable/custom_seekbar_track"
@@ -296,4 +313,15 @@
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/popupHistoryButton"
+        android:layout_width="750dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        style="@style/GamePopupButtonStyle"
+        android:text="황금돼지를 움직여 기간을 조정할 수 있어요"
+        android:textSize="32sp"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:fontFamily="@font/gmarketsansbold"/>
 </FrameLayout>
