@@ -4,7 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.graphics.Typeface
-import android.media.SoundPool
+import android.media.AudioAttributes
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +15,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.view.animation.BounceInterpolator
 import android.media.MediaPlayer
+import android.media.SoundPool
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.text.SpannableString
@@ -81,10 +83,37 @@ class GameBallFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_game_ball, container, false)
 
         // mixingBallMediaPlayer 초기화
-        mixingBallMediaPlayer = MediaPlayer.create(requireContext(), R.raw.mixing_ball_sound)
-        buttonMediaPlayer = MediaPlayer.create(requireContext(), R.raw.press_button_sound)
-        mixingBallMediaPlayer.setVolume(0.5f, 0.5f)
-        buttonMediaPlayer.setVolume(0.3f, 0.3f)
+        //mixingBallMediaPlayer = MediaPlayer.create(requireContext(), R.raw.mixing_ball_sound)
+        //buttonMediaPlayer = MediaPlayer.create(requireContext(), R.raw.press_button_sound)
+        //mixingBallMediaPlayer.setVolume(0.5f, 0.5f)
+        //buttonMediaPlayer.setVolume(0.3f, 0.3f)
+        // mixingBallMediaPlayer 초기화
+        mixingBallMediaPlayer = MediaPlayer().apply {
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC) // 오디오 콘텐츠 타입
+                    .setUsage(AudioAttributes.USAGE_MEDIA)             // 용도
+                    .build()
+            )
+            setDataSource(requireContext(), Uri.parse("android.resource://${requireContext().packageName}/${R.raw.mixing_ball_sound}"))
+            prepare() // 준비
+            setVolume(0.5f, 0.5f)
+        }
+        // buttonMediaPlayer 초기화
+        buttonMediaPlayer = MediaPlayer().apply {
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .build()
+            )
+            setDataSource(requireContext(), Uri.parse("android.resource://${requireContext().packageName}/${R.raw.press_button_sound}"))
+            prepare()
+            setVolume(0.3f, 0.3f)
+        }
+
+
+
         //mixingBallMediaPlayer.isLooping = true
 
         // Find the views and initialize them

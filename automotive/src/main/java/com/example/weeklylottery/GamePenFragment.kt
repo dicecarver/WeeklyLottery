@@ -15,6 +15,8 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.animation.ObjectAnimator
 import android.content.ContentValues.TAG
 import android.graphics.Typeface
+import android.media.AudioAttributes
+import android.net.Uri
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
@@ -61,7 +63,18 @@ class GamePenFragment : Fragment() {
 
         flag_playing = false
 
-        markermediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound)
+        //markermediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound)
+        markermediaPlayer = MediaPlayer().apply {
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC) // 오디오 콘텐츠 타입
+                    .setUsage(AudioAttributes.USAGE_MEDIA)             // 용도
+                    .build()
+            )
+            setDataSource(requireContext(), Uri.parse("android.resource://${requireContext().packageName}/${R.raw.marker_sound}"))
+            prepare() // 준비
+            setVolume(1.0f, 1.0f)
+        }
 
         paperLayout_lotterypaper = rootView.findViewById(R.id.paperLayout_lotterypaper)
         headImg_lotterypaper = rootView.findViewById(R.id.headImg_lotterypaper)
