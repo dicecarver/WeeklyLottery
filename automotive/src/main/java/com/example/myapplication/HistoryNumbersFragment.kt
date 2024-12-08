@@ -9,6 +9,7 @@ import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
@@ -64,6 +65,18 @@ class HistoryNumbersFragment : Fragment() {
         last_round_txt = rootView.findViewById(R.id.last_round_txt)
 
         popupHistoryButton = rootView.findViewById(R.id.popupHistoryButton)
+
+        rangeSeekBar.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
+                    rangeSeekBar.parent.requestDisallowInterceptTouchEvent(true)
+                }
+                MotionEvent.ACTION_UP -> {
+                    rangeSeekBar.parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+            false
+        }
 
         // 전체 텍스트
         val text = "황금돼지를 움직여 기간을 조정할 수 있어요"

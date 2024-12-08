@@ -282,6 +282,7 @@
                 android:id="@+id/rangeSeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
                 android:max="10"
                 android:maxHeight="18dp"
                 android:maxWidth="30dp"
@@ -290,7 +291,6 @@
                 android:progressDrawable="@drawable/custom_seekbar_track"
                 android:rotation="180"
                 android:layout_marginTop="50dp" />
-
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp">

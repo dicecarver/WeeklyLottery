@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="automotive">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-27T17:06:16.586330Z">
+        <DropdownSelection timestamp="2024-12-07T18:46:01.355272Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=/Users/boardocean/.android/avd/MOAH2024_API_33.avd" />

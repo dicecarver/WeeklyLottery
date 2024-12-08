@@ -37,6 +37,7 @@
     </FrameLayout>
 
     <!-- 레이아웃이 동적으로 변경될 컨테이너 -->
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/layoutContainer_history"
         android:layout_width="match_parent"
