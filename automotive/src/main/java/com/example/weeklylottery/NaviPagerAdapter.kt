@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.weeklylottery
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

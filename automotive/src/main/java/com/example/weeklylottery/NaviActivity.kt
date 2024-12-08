@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.weeklylottery
 
 import android.content.ContentValues.TAG
 import android.content.Intent

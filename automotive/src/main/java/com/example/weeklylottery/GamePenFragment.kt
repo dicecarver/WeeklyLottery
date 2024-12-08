@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.weeklylottery
 import android.animation.Animator
 import android.media.MediaPlayer
 import android.os.Bundle

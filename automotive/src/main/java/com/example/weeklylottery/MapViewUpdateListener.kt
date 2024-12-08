@@ -1,6 +1,6 @@
-package com.example.myapplication.interfaces
+package com.example.weeklylottery.interfaces
 
-import com.example.myapplication.Place
+import com.example.weeklylottery.Place
 
 interface MapViewUpdateListener {
     fun onMapUpdated(latitude: Double, longitude: Double)

@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.weeklylottery
 
 import android.graphics.Color
 import android.text.SpannableString

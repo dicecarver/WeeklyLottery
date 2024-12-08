@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.weeklylottery
 
 import android.animation.Animator
 import android.animation.AnimatorSet
@@ -24,6 +24,7 @@ import android.text.style.StyleSpan
 import android.util.Log
 import androidx.appcompat.widget.AppCompatButton
 import androidx.viewpager2.widget.ViewPager2
+
 
 import java.io.File
 import java.io.FileInputStream

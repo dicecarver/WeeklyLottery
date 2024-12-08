@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.weeklylottery
 
 import android.Manifest
 import android.content.ContentValues.TAG
@@ -26,8 +26,8 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.interfaces.MapViewUpdateListener
-import com.example.myapplication.PlaceRepository.FilterMode
+import com.example.weeklylottery.interfaces.MapViewUpdateListener
+import com.example.weeklylottery.PlaceRepository.FilterMode
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import kotlinx.coroutines.CoroutineScope

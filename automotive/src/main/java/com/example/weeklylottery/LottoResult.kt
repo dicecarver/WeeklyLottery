@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.weeklylottery
 
 data class LottoResult(
     val round: String,

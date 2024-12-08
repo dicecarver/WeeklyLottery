@@ -1,5 +1,6 @@
-package com.example.myapplication
+package com.example.weeklylottery
 
+import com.example.weeklylottery.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
