@@ -221,7 +221,7 @@ class NaviActivity : AppCompatActivity() {
     }
 
     private fun updateMapView() {
-        Log.d(TAG, "heyheyhey?"+ selectedPlace.toString())
+        //Log.d(TAG, "heyheyhey?"+ selectedPlace.toString())
         if (selectedPlace == null) {
             // 선택된 장소가 없을 때 처리
             mapView_null.visibility = View.VISIBLE
@@ -231,7 +231,7 @@ class NaviActivity : AppCompatActivity() {
         }
         else
         {
-            Log.d(TAG, "heyhey"+ selectedPlace.toString())
+            //Log.d(TAG, "heyhey"+ selectedPlace.toString())
             mapView_null.visibility = View.INVISIBLE
             mapView.visibility = View.VISIBLE
         }

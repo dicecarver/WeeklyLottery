@@ -16,5 +16,6 @@
         <item>20km 이내</item>
         <item>30km 이내</item>
         <item>50km 이내</item>
+        <item>ALL</item>
     </string-array>
 </resources>

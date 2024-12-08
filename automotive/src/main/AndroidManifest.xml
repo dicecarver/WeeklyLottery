@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
 
+        <meta-data
+            android:name="displayArea_fullView" android:value="true"/>
+
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.MySplashScreen"

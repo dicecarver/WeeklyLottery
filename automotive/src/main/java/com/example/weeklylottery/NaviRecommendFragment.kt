@@ -193,8 +193,8 @@ class NaviRecommendFragment : Fragment(), PlaceAdapter.OnItemClickListener {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = placeAdapter
         }
-        Log.d(TAG, "aaaaa-a ${sortedPlaces}")
-        Log.d(TAG, "aaaaa-b ${placeAdapter}")
+        //Log.d(TAG, "aaaaa-a ${sortedPlaces}")
+        //Log.d(TAG, "aaaaa-b ${placeAdapter}")
         /*
         // 현재 위치 가져오기 및 권한 확인
         if (ActivityCompat.checkSelfPermission(

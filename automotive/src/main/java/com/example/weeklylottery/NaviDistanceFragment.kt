@@ -85,7 +85,7 @@ class NaviDistanceFragment : Fragment(), PlaceAdapter.OnItemClickListener {
             distance = distanceFilter,
             filterMode = filterMode
         )
-        Log.d(TAG, "distance" + places)
+        //Log.d(TAG, "distance" + places)
         // 1등 당첨 수 기준으로 정렬
         //val sortedPlaces = places.sortedByDescending { it.firstPrizeCount }
 
@@ -111,8 +111,8 @@ class NaviDistanceFragment : Fragment(), PlaceAdapter.OnItemClickListener {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = placeAdapter
         }
-        Log.d(TAG, "bbbbb-a ${sortedPlaces}")
-        Log.d(TAG, "bbbbb-b ${placeAdapter}")
+        //Log.d(TAG, "bbbbb-a ${sortedPlaces}")
+        //Log.d(TAG, "bbbbb-b ${placeAdapter}")
 
         /*
 

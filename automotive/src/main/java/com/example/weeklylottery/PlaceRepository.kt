@@ -1,5 +1,6 @@
 package com.example.weeklylottery
 
+import android.content.ContentValues
 import android.content.Context
 import android.location.Location
 import android.util.Log
@@ -7,6 +8,9 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.time.LocalDate
 import java.time.Period
+import com.opencsv.CSVReader
+import java.io.FileReader
+import java.time.temporal.ChronoUnit
 
 // 1. csv 읽어오는 함수
 // 2. 거리값 계산 및 리스트 정력(거리순 오름차순)
@@ -25,6 +29,12 @@ object PlaceRepository {
         return places!!
     }
 
+    fun readCsv(filePath: String): List<Array<String>> {
+        CSVReader(FileReader(filePath)).use { reader ->
+            return reader.readAll() // 모든 행을 읽어서 반환
+        }
+    }
+
     /**
      * CSV 데이터를 읽어와 List<Place>로 변환
      */
@@ -33,15 +43,13 @@ object PlaceRepository {
         val winDataMap = loadWinDataMap(context, "win_data_all.csv")
         val today = LocalDate.now()
         try {
+            // Open CSV file from assets using InputStreamReader
             val inputStream = context.assets.open("stores_winning.csv")
-            val reader = BufferedReader(InputStreamReader(inputStream))
-            var isFirstLine = true
-            reader.forEachLine { line ->
-                if (isFirstLine) {
-                    isFirstLine = false
-                    return@forEachLine
-                }
-                val tokens = line.split(",")
+            val reader = CSVReader(InputStreamReader(inputStream))
+
+            // Read all rows, skipping the header
+            val rows = reader.readAll().drop(1) // 첫 번째 줄(헤더) 제외
+            for (tokens in rows) {
                 if (tokens.size >= 8) {
                     val name = tokens[0].trim()
                     val address = tokens[1].trim()
@@ -111,7 +119,7 @@ object PlaceRepository {
         distance: Int,
         filterMode: FilterMode
     ): List<Place> {
-        Log.d(TAG, "Filtering places by distance: $distance km")
+        //Log.d(TAG, "Filtering places by distance: $distance km")
         val cachedPlaces = getPlaces(context) // 캐시된 데이터 활용
 
         // 거리 계산 및 필터 적용
@@ -165,12 +173,14 @@ object PlaceRepository {
     }
 
     private fun getRelativeDateString(today: LocalDate, targetDate: LocalDate): String {
-        val period = Period.between(targetDate, today)
+        val daysBetween = ChronoUnit.DAYS.between(targetDate, today).toInt()
         return when {
-            period.years >= 1 -> "${period.years}년 전"
-            period.months >= 1 -> "${period.months}개월 전"
-            period.days >= 7 -> "${period.days / 7}주 전"
-            else -> "${period.days}일 전"
+            daysBetween == 0 -> "오늘" // 오늘의 경우 정확히 처리
+            daysBetween >= 365 -> "${daysBetween / 365}년 전"
+            daysBetween >= 30 -> "${daysBetween / 30}개월 전"
+            daysBetween >= 7 -> "${daysBetween / 7}주 전"
+            daysBetween > 0 -> "${daysBetween}일 전"
+            else -> "${-daysBetween}일 후" // 미래 날짜 처리
         }
     }
 

@@ -18,7 +18,7 @@
         <!-- 거리 텍스트 -->
         <TextView
             android:id="@+id/distanceTextView"
-            android:layout_width="110dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="@string/distance"
@@ -127,7 +127,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/RecentPrize"
-            android:layout_width="200dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             app:layout_constraintStart_toEndOf="@id/medalLayout"
@@ -140,7 +140,7 @@
                 android:id="@+id/firstRecentPrizeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="최근 1등: 2주 전"
+                android:text="최근 1등: 000개월 전"
                 android:textSize="24sp"
                 android:textColor="@color/gold"
                 android:paddingBottom="12dp"
@@ -153,7 +153,7 @@
                 android:id="@+id/secondRecentPrizeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="최근 2등: 6개월 전"
+                android:text="최근 2등: 000개월 전"
                 android:textSize="24sp"
                 android:fontFamily="@font/gmarketsansmedium"
                 app:layout_constraintStart_toStartOf="parent"

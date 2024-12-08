@@ -486,7 +486,7 @@ class GamePenFragment : Fragment() {
             val startRadius = (view.width / 2).toFloat()
             val finalRadius = Math.hypot(centerX.toDouble(), view.height.toDouble()).toFloat()
 
-            Log.d(TAG, "Animation parameters - centerX: $centerX, centerY: $centerY, startRadius: $startRadius, finalRadius: $finalRadius")
+            //Log.d(TAG, "Animation parameters - centerX: $centerX, centerY: $centerY, startRadius: $startRadius, finalRadius: $finalRadius")
 
             val revealAnimation = ViewAnimationUtils.createCircularReveal(
                 view, centerX, centerY, startRadius, finalRadius
