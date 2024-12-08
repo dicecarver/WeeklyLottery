@@ -135,11 +135,11 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
     <style name="seeting_seekbar">
-        <item name="android:layout_width">600dp</item>
+        <item name="android:layout_width">450dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:rotation">270</item>
-        <item name="android:translationY">300dp</item>
+        <item name="android:translationY">230dp</item>
         <item name="android:thumb">@drawable/custom_thumb_setting</item>
         <item name="android:progressDrawable">@drawable/custom_seek_bar_track_setting</item>
         <item name="android:thumbOffset">0dp</item>
@@ -150,7 +150,7 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_width">35dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:translationY">600dp</item>
+        <item name="android:translationY">460dp</item>
     </style>
     <style name="game_ball_text">
         <item name="android:textSize">25dp</item>

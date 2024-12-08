@@ -275,25 +275,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="22dp">
 
             <!-- 범위 선택 SeekBar -->
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/rangeSeekBar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:nestedScrollingEnabled="true"
                 android:max="10"
-                android:maxHeight="18dp"
+                android:maxHeight="15dp"
                 android:maxWidth="30dp"
                 android:thumbOffset="0dp"
                 android:thumb="@drawable/custom_thumb"
                 android:progressDrawable="@drawable/custom_seekbar_track"
                 android:rotation="180"
-                android:layout_marginTop="50dp" />
+                android:layout_marginTop="20dp" />
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="-20dp">
                 <TextView
                     android:text="1회"
                     android:textColor="@color/gray_light"
