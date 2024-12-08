@@ -38,8 +38,8 @@ class GameActivity : AppCompatActivity() {
         // TabLayout과 ViewPager 연결
         TabLayoutMediator(tabLayout_game, viewPager_game) { tab, position ->
             tab.text = when (position) {
-                0 -> "        공 추첨 테마        "
-                1 -> "        펜 마킹 테마        "
+                0 -> "        공 추첨        "
+                1 -> "        펜 마킹        "
                 else -> null
             }
             // Tab 클릭 시 설정 화면을 종료하고 ViewPager로 전환
