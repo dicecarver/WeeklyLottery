@@ -4,7 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.graphics.Typeface
-import android.media.AudioAttributes
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,8 +25,11 @@ import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.util.Log
 import androidx.appcompat.widget.AppCompatButton
-import androidx.viewpager2.widget.ViewPager2
-
+import com.google.android.exoplayer2.C
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.audio.AudioAttributes
 
 import java.io.File
 import java.io.FileInputStream
@@ -37,8 +40,9 @@ import kotlin.random.Random
 
 class GameBallFragment : Fragment() {
 
-    private lateinit var mixingBallMediaPlayer: MediaPlayer // nullable로 선언하여 안전성 강화
-    private lateinit var buttonMediaPlayer: MediaPlayer // nullable로 선언하여 안전성 강화
+    private lateinit var mixingBallPlayer: ExoPlayer
+    private lateinit var buttonPlayer: ExoPlayer
+
     private val handler = Handler(Looper.getMainLooper())
 
     private lateinit var ballLayout: FrameLayout
@@ -81,36 +85,8 @@ class GameBallFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_game_ball, container, false)
-
-        // mixingBallMediaPlayer 초기화
-        //mixingBallMediaPlayer = MediaPlayer.create(requireContext(), R.raw.mixing_ball_sound)
-        //buttonMediaPlayer = MediaPlayer.create(requireContext(), R.raw.press_button_sound)
-        //mixingBallMediaPlayer.setVolume(0.5f, 0.5f)
-        //buttonMediaPlayer.setVolume(0.3f, 0.3f)
-        // mixingBallMediaPlayer 초기화
-        mixingBallMediaPlayer = MediaPlayer().apply {
-            setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC) // 오디오 콘텐츠 타입
-                    .setUsage(AudioAttributes.USAGE_MEDIA)             // 용도
-                    .build()
-            )
-            setDataSource(requireContext(), Uri.parse("android.resource://${requireContext().packageName}/${R.raw.mixing_ball_sound}"))
-            prepare() // 준비
-            setVolume(0.5f, 0.5f)
-        }
-        // buttonMediaPlayer 초기화
-        buttonMediaPlayer = MediaPlayer().apply {
-            setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .build()
-            )
-            setDataSource(requireContext(), Uri.parse("android.resource://${requireContext().packageName}/${R.raw.press_button_sound}"))
-            prepare()
-            setVolume(0.3f, 0.3f)
-        }
+        // ExoPlayer 초기화
+        initializeExoPlayer()
 
 
 
@@ -227,6 +203,27 @@ class GameBallFragment : Fragment() {
         }
     }
 
+    private fun initializeExoPlayer() {
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(C.USAGE_MEDIA)
+            .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+            .build()
+
+        mixingBallPlayer = ExoPlayer.Builder(requireContext()).build().apply {
+            setAudioAttributes(audioAttributes, true)
+            setMediaItem(MediaItem.fromUri(Uri.parse("android.resource://${requireContext().packageName}/${R.raw.mixing_ball_sound}")))
+            prepare()
+            volume = 0.5f
+        }
+
+        buttonPlayer = ExoPlayer.Builder(requireContext()).build().apply {
+            setAudioAttributes(audioAttributes, true)
+            setMediaItem(MediaItem.fromUri(Uri.parse("android.resource://${requireContext().packageName}/${R.raw.press_button_sound}")))
+            prepare()
+            volume = 0.3f
+        }
+    }
+
     fun setInitialAlpha(view: View, alpha: Float) {
         if (view is ViewGroup) {
             for (i in 0 until view.childCount) {
@@ -326,11 +323,11 @@ class GameBallFragment : Fragment() {
             }
         }
         // mixing_ball_sound의 첫 10초 구간을 반복 재생 시작
-        buttonMediaPlayer.start() // Play button click sound
+        playButtonSound() // 버튼 클릭 소리 재생
 
         // Delay playMixSound by 0.5 seconds
         handler.postDelayed({
-            playMixSound(0) // Start mixing sound after delay
+            mixBallSound()
         }, 500) // 500 milliseconds = 0.5 seconds
 
         Handler(Looper.getMainLooper()).postDelayed({
@@ -345,7 +342,7 @@ class GameBallFragment : Fragment() {
                                             startRotationAndMoveAnimation(circleText5, 4, -1300f + 800f) {
                                                 Handler(Looper.getMainLooper()).postDelayed({
                                                     startRotationAndMoveAnimation(circleText6, 5, -1300f + 1000f) {
-                                                        stopMixSound()
+                                                        mixingBallPlayer.stop()
                                                         resetHandButtons()
                                                         enableButtons()
                                                         isRunning = false
@@ -604,58 +601,6 @@ class GameBallFragment : Fragment() {
         }
     }
 
-    private fun restartMediaPlayer(startOffset: Int) {
-        try {
-            mixingBallMediaPlayer = MediaPlayer.create(requireContext(), R.raw.mixing_ball_sound).apply {
-                setVolume(0.25f, 0.25f)
-                seekTo(startOffset)
-                start()
-            }
-            Log.i("GameBallFragment", "MediaPlayer restarted successfully")
-        } catch (e: Exception) {
-            Log.e("GameBallFragment", "Failed to restart MediaPlayer: ${e.message}")
-        }
-    }
-
-    private fun playSoundSafely(mediaPlayer: MediaPlayer, startOffset: Int) {
-        try {
-            if (::mixingBallMediaPlayer.isInitialized) {
-                if (mediaPlayer.isPlaying) {
-                    mediaPlayer.stop()
-                }
-                mediaPlayer.reset()
-                mediaPlayer.release()
-            }
-        } catch (e: IllegalStateException) {
-            Log.e("GameBallFragment", "MediaPlayer IllegalStateException: ${e.message}")
-        } catch (e: Exception) {
-            Log.e("GameBallFragment", "Unexpected error: ${e.message}")
-        }
-
-        // MediaPlayer 새로 생성
-        mixingBallMediaPlayer = MediaPlayer.create(requireContext(), R.raw.mixing_ball_sound).apply {
-            seekTo(startOffset)
-            start()
-        }
-    }
-
-    private fun playMixSound(startOffset: Int){
-        //mixingBallMediaPlayer.seekTo(startOffset)
-        //mixingBallMediaPlayer.setVolume(0.25f, 0.25f)
-        //mixingBallMediaPlayer.start()
-        playSoundSafely(mixingBallMediaPlayer, startOffset)
-    }
-    private fun stopMixSound() {
-        try {
-            if (::mixingBallMediaPlayer.isInitialized && mixingBallMediaPlayer.isPlaying) {
-                mixingBallMediaPlayer.stop()
-            }
-            mixingBallMediaPlayer.release()
-        }catch (e: IllegalStateException) {
-            Log.e("GamePenFragment", "MediaPlayer IllegalStateException: ${e.message}")
-        }
-    }
-
     fun disableButtons() {
         lefthandButton.isEnabled = false
         righthandButton.isEnabled = false
@@ -666,9 +611,35 @@ class GameBallFragment : Fragment() {
         righthandButton.isEnabled = true
     }
 
+    private fun playButtonSound() {
+        try {
+            if (buttonPlayer.isPlaying) {
+                buttonPlayer.stop() // 재생 중이면 중지
+            }
+            buttonPlayer.seekTo(0) // 시작점으로 이동
+            buttonPlayer.prepare() // 다시 준비
+            buttonPlayer.play() // 소리 재생
+        } catch (e: Exception) {
+            Log.e("GameBallFragment", "Failed to play button sound: ${e.message}")
+        }
+    }
+    private fun mixBallSound() {
+        try {
+            if (mixingBallPlayer.isPlaying) {
+                mixingBallPlayer.stop() // 재생 중이면 중지
+            }
+            mixingBallPlayer.seekTo(0) // 시작점으로 이동
+            mixingBallPlayer.prepare() // 다시 준비
+            mixingBallPlayer.play() // 소리 재생
+        } catch (e: Exception) {
+            Log.e("GameBallFragment", "Failed to play mixingBallPlayer sound: ${e.message}")
+        }
+    }
+
     override fun onPause() {
         super.onPause()
-        stopMixSound() // 사운드 중지
+        mixingBallPlayer.pause()
+        buttonPlayer.pause()
         soundPool.autoPause() // SoundPool 일시 중지
         isRunning = false // 동작 상태 초기화
     }
@@ -701,23 +672,8 @@ class GameBallFragment : Fragment() {
             Log.e("GamePenFragment", "Error releasing SoundPool: ${e.message}")
         }
 
-        try {
-            if (::mixingBallMediaPlayer.isInitialized) {
-                mixingBallMediaPlayer.stop()
-                mixingBallMediaPlayer.release() // MediaPlayer 해제
-            }
-        } catch (e: IllegalStateException) {
-            Log.e("GamePenFragment", "Error releasing MixingBallMediaPlayer: ${e.message}")
-        }
-
-        try {
-            if (::buttonMediaPlayer.isInitialized) {
-                buttonMediaPlayer.stop()
-                buttonMediaPlayer.release() // MediaPlayer 해제
-            }
-        } catch (e: IllegalStateException) {
-            Log.e("GamePenFragment", "Error releasing ButtonMediaPlayer: ${e.message}")
-        }
+        mixingBallPlayer.release()
+        buttonPlayer.release()
 
         isRunning = false // 상태 초기화
     }

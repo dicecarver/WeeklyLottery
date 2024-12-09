@@ -15,7 +15,6 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.animation.ObjectAnimator
 import android.content.ContentValues.TAG
 import android.graphics.Typeface
-import android.media.AudioAttributes
 import android.net.Uri
 import android.text.SpannableString
 import android.text.Spanned
@@ -27,6 +26,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
+import com.google.android.exoplayer2.C
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.audio.AudioAttributes
 
 import java.io.BufferedReader
 import java.io.File
@@ -41,7 +45,7 @@ class GamePenFragment : Fragment() {
     private var flag_playing = false
     private var isAnimationPlaying = false
 
-    private lateinit var markermediaPlayer: MediaPlayer
+    private lateinit var markerPlayer: ExoPlayer
 
     private lateinit var paperLayout_lotterypaper: LinearLayout
     private lateinit var gridLayout_lotterypaper: GridLayout
@@ -63,17 +67,21 @@ class GamePenFragment : Fragment() {
 
         flag_playing = false
 
-        //markermediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound)
-        markermediaPlayer = MediaPlayer().apply {
+        // ExoPlayer 초기화
+        markerPlayer = ExoPlayer.Builder(requireContext()).build().apply {
             setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC) // 오디오 콘텐츠 타입
-                    .setUsage(AudioAttributes.USAGE_MEDIA)             // 용도
-                    .build()
+                com.google.android.exoplayer2.audio.AudioAttributes.Builder()
+                    .setUsage(C.USAGE_MEDIA)
+                    .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
+                    .build(), true
             )
-            setDataSource(requireContext(), Uri.parse("android.resource://${requireContext().packageName}/${R.raw.marker_sound}"))
-            prepare() // 준비
-            setVolume(1.0f, 1.0f)
+            setMediaItem(
+                MediaItem.fromUri(
+                    Uri.parse("android.resource://${requireContext().packageName}/${R.raw.marker_sound}")
+                )
+            )
+            prepare()
+            volume = 1.0f
         }
 
         paperLayout_lotterypaper = rootView.findViewById(R.id.paperLayout_lotterypaper)
@@ -234,81 +242,7 @@ class GamePenFragment : Fragment() {
             }
         }
     }
-    private fun restartMediaPlayer(startOffset: Int) {
-        try {
-            markermediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound).apply {
-                seekTo(startOffset)
-                start()
-            }
-            Log.i("GamePenFragment", "MediaPlayer restarted successfully")
-        } catch (e: Exception) {
-            Log.e("GamePenFragment", "Failed to restart MediaPlayer: ${e.message}")
-        }
-    }
-    private fun playSoundSafely(mediaPlayer: MediaPlayer, startOffset: Int) {
-        try {
-            if (::markermediaPlayer.isInitialized) {
-                if (mediaPlayer.isPlaying) {
-                    mediaPlayer.stop()
-                }
-                mediaPlayer.reset()
-                mediaPlayer.release()
-            }
-        } catch (e: IllegalStateException) {
-            Log.e("GamePenFragment", "MediaPlayer IllegalStateException: ${e.message}")
-        } catch (e: Exception) {
-            Log.e("GamePenFragment", "Unexpected error: ${e.message}")
-        }
 
-        markermediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound).apply {
-            seekTo(startOffset)
-            start()
-        }
-    }
-    private fun playSound(startOffset: Int){
-        //mediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound)
-        //mediaPlayer.seekTo(startOffset)
-        //mediaPlayer.start()
-
-        playSoundSafely(markermediaPlayer, startOffset)
-
-        /*try {
-            // 기존 MediaPlayer가 존재하면 정리
-            if (::mediaPlayer.isInitialized) {
-                mediaPlayer.reset() // MediaPlayer 초기화
-                mediaPlayer.release()
-            }
-
-            // 새 MediaPlayer 생성
-            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.marker_sound).apply {
-                seekTo(startOffset) // 시작 위치 설정
-                start() // 재생
-            }
-
-        } catch (e: IllegalStateException) {
-            Log.e("GamePenFragment", "IllegalStateException: ${e.message}")
-            restartMediaPlayer(startOffset) // 문제 발생 시 MediaPlayer 재시작
-
-        } catch (e: IOException) {
-            Log.e("GamePenFragment", "IOException: ${e.message}")
-            restartMediaPlayer(startOffset) // IOException 발생 시 재시작
-
-        } catch (e: Exception) {
-            Log.e("GamePenFragment", "Unexpected error: ${e.message}")
-            restartMediaPlayer(startOffset) // 기타 예외 처리
-        }*/
-    }
-
-    private fun stopSound() {
-        try {
-            if (::markermediaPlayer.isInitialized && markermediaPlayer.isPlaying) {
-                markermediaPlayer.stop()
-            }
-            markermediaPlayer.release()
-        } catch (e: IllegalStateException) {
-            Log.e("GamePenFragment", "Error stopping MediaPlayer: ${e.message}")
-        }
-    }
 
     // 모든 TextView를 초기 색상으로 복구
     private fun resetTextViewColors(rootView: View, text: String) {
@@ -569,18 +503,61 @@ class GamePenFragment : Fragment() {
         }
     }
 
+    private fun playSound(startOffset: Int = 0) {
+        try {
+            // ExoPlayer가 이미 재생 중이라면 중지
+            if (markerPlayer.isPlaying) {
+                markerPlayer.stop()
+            }
 
+            // ExoPlayer 초기화 및 시작
+            markerPlayer.seekTo(startOffset.toLong()) // 시작 위치로 이동
+            markerPlayer.prepare() // 다시 준비
+            markerPlayer.play() // 소리 재생
+        } catch (e: IllegalStateException) {
+            Log.e("GamePenFragment", "IllegalStateException: Failed to play sound: ${e.message}")
+            // 상태가 잘못되었을 때 예외 처리
+            resetExoPlayer()
+            playSound(startOffset) // 다시 시도
+        } catch (e: Exception) {
+            Log.e("GamePenFragment", "Unexpected error: Failed to play sound: ${e.message}")
+        }
+    }
+    // ExoPlayer 상태 초기화를 위한 함수
+    private fun resetExoPlayer() {
+        try {
+            markerPlayer.stop()
+            markerPlayer.clearMediaItems() // 기존 미디어 항목 제거
+            markerPlayer.setMediaItem(
+                MediaItem.fromUri(
+                    Uri.parse("android.resource://${requireContext().packageName}/${R.raw.marker_sound}")
+                )
+            )
+            markerPlayer.prepare() // 다시 준비
+        } catch (e: Exception) {
+            Log.e("GamePenFragment", "Failed to reset ExoPlayer: ${e.message}")
+        }
+    }
+    private fun stopSound() {
+        try {
+            if (markerPlayer.isPlaying) {
+                markerPlayer.stop()
+                markerPlayer.seekTo(0)
+            }
+        } catch (e: Exception) {
+            Log.e("GamePenFragment", "Error stopping sound: ${e.message}")
+        }
+    }
 
     override fun onPause() {
         super.onPause()
         flag_playing = false // 동작 상태 초기화
         try {
-            if (::markermediaPlayer.isInitialized && markermediaPlayer.isPlaying) {
-                markermediaPlayer.stop()
+            if (markerPlayer.isPlaying) {
+                markerPlayer.pause()
             }
-            markermediaPlayer.release()
-        }catch (e: IllegalStateException) {
-            Log.e("GamePenFragment", "MediaPlayer IllegalStateException: ${e.message}")
+        } catch (e: Exception) {
+            Log.e("GamePenFragment", "Error pausing sound: ${e.message}")
         }
     }
 
@@ -594,6 +571,7 @@ class GamePenFragment : Fragment() {
         //setInitialAlpha(gridLayout_lotterypaper, 1.0f)
         //setInitialAlpha(dashline_lotterypaper_2, 1.0f)
 
+
     }
 
     override fun onDestroy() {
@@ -601,12 +579,9 @@ class GamePenFragment : Fragment() {
         flag_playing = false
         handler.removeCallbacksAndMessages(null) // 모든 지연 작업 취소
         try {
-            if (::markermediaPlayer.isInitialized) {
-                markermediaPlayer.stop()
-                markermediaPlayer.release()
-            }
-        } catch (e: IllegalStateException) {
-            Log.e("GamePenFragment", "Error releasing MediaPlayer: ${e.message}")
+            markerPlayer.release()
+        } catch (e: Exception) {
+            Log.e("GamePenFragment", "Error releasing ExoPlayer: ${e.message}")
         }
     }
 
