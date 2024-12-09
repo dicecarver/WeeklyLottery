@@ -581,11 +581,8 @@ class GamePenFragment : Fragment() {
         super.onDestroy()
         flag_playing = false
         handler.removeCallbacksAndMessages(null) // 모든 지연 작업 취소
-        try {
-            markerPlayer.release()
-        } catch (e: Exception) {
-            Log.e("GamePenFragment", "Error releasing ExoPlayer: ${e.message}")
-        }
+        markerPlayer.release()
+
     }
 
 }
