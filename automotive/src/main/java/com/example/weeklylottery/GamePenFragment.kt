@@ -58,11 +58,13 @@ class GamePenFragment : Fragment() {
     private val handler = Handler(Looper.getMainLooper())
     private val selectedTextViews = mutableListOf<TextView>() // 선택된 TextView 리스트
 
+    private lateinit var rootView: View
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_game_pen, container, false)
+        rootView = inflater.inflate(R.layout.fragment_game_pen, container, false)
         resetTextViewColors(rootView, "Black")
 
         flag_playing = false
@@ -566,6 +568,7 @@ class GamePenFragment : Fragment() {
 
         // 초기화 작업
         flag_playing = false
+        resetTextViewColors(rootView, "Black")
         //setInitialAlpha(headImg_lotterypaper, 1.0f)
         //setInitialAlpha(dashline_lotterypaper, 1.0f)
         //setInitialAlpha(gridLayout_lotterypaper, 1.0f)
