@@ -53,6 +53,7 @@
                 android:layout_height="match_parent" />-->
             <ImageView
                 android:id="@+id/mapView_navi"
+                android:scaleType="fitXY"
                 android:src="@drawable/map_example"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
