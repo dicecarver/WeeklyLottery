@@ -47,16 +47,16 @@
 
 
             <!-- OSMDroid MapView -->
-            <!--<org.osmdroid.views.MapView
+            <org.osmdroid.views.MapView
                 android:id="@+id/mapView_navi"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />-->
-            <ImageView
+                android:layout_height="match_parent" />
+            <!--<ImageView
                 android:id="@+id/mapView_navi"
                 android:scaleType="fitXY"
                 android:src="@drawable/map_example"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent" />-->
 
 
             <!-- ConstraintLayout으로 이미지 버튼 배치 -->

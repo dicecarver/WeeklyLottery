@@ -19,7 +19,6 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -45,8 +44,7 @@ class NaviActivity : AppCompatActivity() {
     lateinit var viewPager_navi: ViewPager2
 
     private lateinit var mapViewContainer: FrameLayout
-    private lateinit var mapView: ImageView
-    //private lateinit var mapView: MapView
+    private lateinit var mapView: MapView
     private lateinit var mapView_null: TextView
 
     private lateinit var btnNaverMap: ImageButton
@@ -238,7 +236,7 @@ class NaviActivity : AppCompatActivity() {
             mapView.visibility = View.VISIBLE
         }
 
-        /* 임시
+
         val location = GeoPoint(selectedPlace!!.latitude, selectedPlace!!.longitude)
         mapView.controller.setCenter(location)
         mapView.controller.setZoom(16.0)
@@ -312,22 +310,19 @@ class NaviActivity : AppCompatActivity() {
         mapView.overlays.add(marker)
         mapView.overlays.add(textOverlay)
 
-        */
+
     }
     private fun initializeMap(){
         val ctx = applicationContext
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
 
         // MapView 초기화
-        /* 임시
         mapView.setTileSource(TileSourceFactory.MAPNIK)
         mapView.setMultiTouchControls(true)
         mapView.controller.setZoom(16.0)
         mapView.controller.setCenter(GeoPoint(37.308711, 127.136805)) // Example: San Francisco
-
-         */
     }
-    /* 임시
+
     private fun updateMapMarker(place: Place) {
         val marker = org.osmdroid.views.overlay.Marker(mapView).apply {
             position = GeoPoint(place.latitude, place.longitude)
@@ -361,6 +356,4 @@ class NaviActivity : AppCompatActivity() {
         super.onDestroy()
         mapView.onDetach()
     }
-    */
-
 }
